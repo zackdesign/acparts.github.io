@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="{{ site.description }}">
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style>
+      body {
+        background-color: #372225;
+      }
+      .header {
+        text-align: center;
+      }
+      .navbar {
+        text-align: right;
+      }
+      .transparent {
+        background:rgba(255,255,255,0.9);
+      }
+      .img-thumbnail {
+        margin-bottom: 10px;
+      }
+      .card img{
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse bg-inverse">
+      <a href="tel:0417 319 276">0417 319 276</a>
+    </nav>
+
+    <div class="container-fluid header">
+      <a href="/">
+        <img src="/images/logo.gif" alt="{{ site.title }}">
+        <img src="/images/tractor-header.jpg" alt="{{ site.title }}">
+      </a>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-9 content">
+          <h1 class="text-white">Parts and Products</h1>
+          <div class="jumbotron transparent">
+            {% for category in site.data %}
+              {% if category[1] != empty %}<h2>{{ category | first | replace: "_", ' ' | remove_first: ' ' | capitalize }}</h2>{% endif %}
+              {% assign products = category[1] %}
+
+              <div class="card-group">
+              {% for product in products %}
+              {% assign p = product[1] %}
+              {% assign anchor = p.title | replace: " ", "_" | remove: "/" | downcase %}
+              {% assign preview = p.description | truncate: 53 %}
+                <div class="card">
+                  <img class="card-img-top w-50" src="/images/products/{{ anchor }}.jpg" alt="{{ p.title }}">
+                  <div class="card-block">
+                    <h4 class="card-title">{{ p.title }}</h4>
+                    <p class="card-text">{{ preview }} {% if preview contains "..." %}<a href="#" data-toggle="modal" data-target="#{{ anchor }}">read more &raquo;</a>{% endif %}</p>
+                  </div>
+                  <div class="card-footer">
+                    <a href="mailto:ant@acparts.com.au?subject={{ p.title }}&body=Hi, I would like to enquire about your {{ p.title }}" class="btn btn-primary">Enquire</a>
+                  </div>
+                </div>
+
+                <div class="modal fade" id="{{ anchor }}" tabindex="-1" role="dialog" aria-labelledby="#{{ anchor }}" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ p.title }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <img class="media-object rounded float-right" src="/images/products/{{ anchor }}.jpg" alt="{{ p.title }}">
+                        {{ p.description | markdownify }}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="mailto:ant@acparts.com.au?subject={{ p.title }}&body=Hi, I would like to enquire about your {{ p.title }}" class="btn btn-primary">Enquire</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              {% endfor %}
+                </div>
+              {% if category[1] != empty %}<br>{% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col menu">
+          <h1 class="text-white">Suppliers</h1>
+          <div class="jumbotron transparent">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/battioni.gif">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/buckton.gif">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/danfoss.jpg">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/faster.jpg">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/image002.gif">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/jurop.jpg">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/logopioggia1.gif">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/nut_collectors.gif">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/parker.jpg">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/pearson.jpg">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/quinn.jpg">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/sam.gif">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/simol_jacks.gif">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/sparex.gif">
+            <img class="img-thumbnail mx-auto d-block" src="/images/suppliers/walvoil.jpg">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="jumbotron transparent">
+        <h2>Anthony Campbell</h2>
+
+        <img class="media-object rounded float-right" src="/images/gatevalve3.jpg">
+
+        <p>After school I left Victoria with my P plates and beloved 1975 HJ Monaro for the Northern Territory where I worked in the mining industry for the next couple of years. I spent most of my time maintaining and servicing hydraulic machinery. When the mine closed I returned home to take a job with J&S Ladhams Contracting. As an operator I was exposed to a broad range of tractors, loaders, slurry tanks, hay and silage equipment. </p>
+
+        <p>This lead me to Pearson Ag (Colac) a then newly established Australian branch of a New Zealand based company Pearson Engineering. I spent the next six years as workshop and parts manager, fitting new Pearson loaders and assembling Buckton wagons, Sam spreaders, Pearson slurry tanks, Jaylor mixers, Sulky spreaders, Quinn fork lifts, and Aitchison seed drills, along with warranty assessments, field work and dealer network parts distribution.</p>
+
+        <p>In 2004 Pearson Engineering the parent company decided to close the Australian workshop. It was at this point I saw an opportunity to continue the parts and warranty service in Australia as my own business. I began trading as AC Service and Parts Pty Ltd in 2004 and I continue to supply an ever-growing range of products to machinery dealers and customers throughout Australia.</p>
+
+        <p>I pride myself on quality customer service, product knowledge and excellent problem solving skills.</p>
+      </div>
+    </div>
+
+    <div class="container-fluid text-white">
+
+      <div class="row">
+        <div class="col">
+          &copy; {{ site.title }}<br>
+          Mob 0417 319 276<br>
+          Ph 03 5233 1085<br>
+          Fax 03 5233 1196<br>
+          <a href="mailto:ant@acparts.com.au">ant@acparts.com.au</a>
+        </div>
+        <div class="col">
+          {{ site.title }}<br>
+          495 Larpent Road<br>
+          Colac, VIC 3249<br>
+        </div>
+        <div class="col">
+          Website by <a href="https://zackdesign.biz">Zack Design</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-96869681-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+  </body>
+</html>
