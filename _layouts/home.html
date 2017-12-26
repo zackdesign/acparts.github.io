@@ -77,19 +77,19 @@
           {% if category[1] != empty %}<h2>{{ category | first | replace: "_", ' ' | remove_first: ' ' | capitalize }}</h2>{% endif %}
           {% assign products = category[1] %}
 
-          <div class="card-group">
+          <div class="row">
           {% for product in products %}
           {% assign p = product[1] %}
           {% assign anchor = p.title | replace: " ", "_" | remove: "/" | downcase %}
-          {% assign preview = p.description | truncate: 53 %}
-            <div class="card">
+          {% assign preview = p.description | truncate: 150 %}
+            <div class="card col-lg-4 col-sm-12 col-md-6">
               <img class="card-img-top w-50" src="/images/products/{{ anchor }}.jpg" alt="{{ p.title }}">
-              <div class="card-block">
+              <div class="card-body">
                 <h4 class="card-title">{{ p.title }}</h4>
                 <p class="card-text">{{ preview }} {% if preview contains "..." %}<a href="#" data-toggle="modal" data-target="#{{ anchor }}">read more &raquo;</a>{% endif %}</p>
               </div>
               <div class="card-footer">
-                <a href="mailto:ant@acparts.com.au?subject={{ p.title }}&body=Hi, I would like to enquire about your {{ p.title }}" class="btn btn-primary">Enquire</a>
+                <a href="mailto:{{ site.email }}?subject={{ p.title }}&body=Hi, I would like to enquire about your {{ p.title }}" class="btn btn-primary">Enquire</a>
               </div>
             </div>
 
@@ -108,7 +108,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="mailto:ant@acparts.com.au?subject={{ p.title }}&body=Hi, I would like to enquire about your {{ p.title }}" class="btn btn-primary">Enquire</a>
+                    <a href="mailto:{{ site.email }}?subject={{ p.title }}&body=Hi, I would like to enquire about your {{ p.title }}" class="btn btn-primary">Enquire</a>
                   </div>
                 </div>
               </div>
