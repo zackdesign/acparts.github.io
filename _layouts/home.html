@@ -86,31 +86,31 @@
           <div class="row">
           {% for product in site.data.contentful.spaces.products.product %}
             {% if category.sys.id == product.category.sys.id %}
-
-            {% assign preview = product.description | truncate: 150 %}
+            {% assign anchor = product.title | replace: " ", "_" | remove: "/" | downcase %}
+            {% assign preview = product.description | xml_escape | truncate: 150 %}
             <div class="card col-lg-4 col-sm-12 col-md-6">
               <img class="card-img-top rounded product-image" src="{{ product.image.url }}" alt="{{ product.image.title }}">
               <div class="card-body">
                 <h4 class="card-title">{{ product.title }}</h4>
-                <p class="card-text">{{ preview }} {% if preview contains "..." %}<a href="#" data-toggle="modal" data-target="#{{ product.sys.id }}">read more &raquo;</a>{% endif %}</p>
+                <p class="card-text">{{ preview }} {% if preview contains "..." %}<a href="#" data-toggle="modal" data-target="#{{ anchor }}">read more &raquo;</a>{% endif %}</p>
               </div>
               <div class="card-footer">
                 <a href="mailto:{{ site.email }}?subject={{ product.title }}&body=Hi, I would like to enquire about your {{ product.title }}" class="btn btn-primary">Enquire</a>
               </div>
             </div>
 
-            <div class="modal fade" id="{{ product.sys.id }}" tabindex="-1" role="dialog" aria-labelledby="#{{ product.title }}" aria-hidden="true">
+            <div class="modal fade" id="{{ anchor }}" tabindex="-1" role="dialog" aria-labelledby="#{{ product.sys.id }}" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="{{ product.title }}">{{ product.title }}</h5>
+                    <h5 class="modal-title">{{ product.title }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    <img class="media-object rounded float-right" src="{{ product.image.url }}" alt="{{ p.title }}">
-                    {{ product.description | markdownify }}
+                    <img class="media-object rounded float-right" src="{{ product.image.url }}" alt="{{ product.title }}">
+                    {{ product.description | xml_escape | markdownify }}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
