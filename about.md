@@ -2,7 +2,7 @@
 title: About
 ---
 
-<img class="media-object rounded float-right" src="/images/gatevalve3.jpg">
+<img class="about-image rounded float-right" src="/images/gatevalve3.jpg">
 
 <p>After school I left Victoria with my P plates and beloved 1975 HJ Monaro for the Northern Territory where I worked in the mining industry for the next couple of years. I spent most of my time maintaining and servicing hydraulic machinery. When the mine closed I returned home to take a job with J&S Ladhams Contracting. As an operator I was exposed to a broad range of tractors, loaders, slurry tanks, hay and silage equipment. </p>
 
