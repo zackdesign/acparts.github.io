@@ -374,30 +374,6 @@ product:
     description: 
     url: "//images.ctfassets.net/rwqbhzkikzd9/4LX6oRxCiA6SiuUy4w6oyY/c6e28fe3d052adbfb3c5ec60d939c344/pivot_post.jpg"
 - sys:
-    id: W84FabNxMQ46qIQ6oywso
-    created_at: !ruby/object:DateTime 2018-11-17 04:34:24.185000000 Z
-    updated_at: !ruby/object:DateTime 2018-11-17 04:34:24.185000000 Z
-    content_type_id: product
-    revision: 1
-  title: Vacuum Pump
-  category:
-    sys:
-      id: 6pEmrvrrX2KaKAck48aqcw
-      created_at: !ruby/object:DateTime 2018-11-17 04:18:58.226000000 Z
-      updated_at: !ruby/object:DateTime 2018-11-17 04:18:58.226000000 Z
-      content_type_id: category
-      revision: 1
-    title: Vacuum Pumps
-  description: Built to last
-  image:
-    sys:
-      id: 68bCf8iVd6MSSCKQkOuomy
-      created_at: !ruby/object:DateTime 2018-11-17 04:14:37.131000000 Z
-      updated_at: !ruby/object:DateTime 2018-11-17 04:14:37.131000000 Z
-    title: vacuum pump
-    description: 
-    url: "//images.ctfassets.net/rwqbhzkikzd9/68bCf8iVd6MSSCKQkOuomy/888fb887d1b2dfaf7123e741793533be/vacuum_pump.jpg"
-- sys:
     id: 4baFqG8lTOOmEsaMS2Yguu
     created_at: !ruby/object:DateTime 2018-11-17 04:26:52.013000000 Z
     updated_at: !ruby/object:DateTime 2018-11-17 04:26:52.013000000 Z
@@ -635,6 +611,30 @@ product:
     title: front end loaders
     description: 
     url: "//images.ctfassets.net/rwqbhzkikzd9/4CD0tEVUIw4eOwkASyYYiE/48c98b44c7f86c77a5cebacfd7f2f057/front_end_loaders.jpg"
+- sys:
+    id: W84FabNxMQ46qIQ6oywso
+    created_at: !ruby/object:DateTime 2018-11-17 04:34:24.185000000 Z
+    updated_at: !ruby/object:DateTime 2018-11-22 00:14:32.716000000 Z
+    content_type_id: product
+    revision: 2
+  title: Vacuum Pump
+  category:
+    sys:
+      id: 6pEmrvrrX2KaKAck48aqcw
+      created_at: !ruby/object:DateTime 2018-11-17 04:18:58.226000000 Z
+      updated_at: !ruby/object:DateTime 2018-11-17 04:18:58.226000000 Z
+      content_type_id: category
+      revision: 1
+    title: Vacuum Pumps
+  description: Built to last, Italian quality
+  image:
+    sys:
+      id: 68bCf8iVd6MSSCKQkOuomy
+      created_at: !ruby/object:DateTime 2018-11-17 04:14:37.131000000 Z
+      updated_at: !ruby/object:DateTime 2018-11-17 04:14:37.131000000 Z
+    title: vacuum pump
+    description: 
+    url: "//images.ctfassets.net/rwqbhzkikzd9/68bCf8iVd6MSSCKQkOuomy/888fb887d1b2dfaf7123e741793533be/vacuum_pump.jpg"
 - sys:
     id: 4HWPbMDjC8qqyQOSaQego2
     created_at: !ruby/object:DateTime 2018-11-17 04:33:33.581000000 Z
