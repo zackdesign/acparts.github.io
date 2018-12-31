@@ -80,11 +80,11 @@
     <div class="container-fluid">
       <h1 class="text-white"><a name="products">Parts and Products</a></h1>
       <div class="jumbotron transparent">
-        {% for category in site.data.contentful.spaces.products.category %}
+        {% for category in site.data.contentful.spaces.acparts.category %}
           <h2>{{ category.title }}</h2>
 
           <div class="row">
-          {% for product in site.data.contentful.spaces.products.product %}
+          {% for product in site.data.contentful.spaces.acparts.product %}
             {% if category.sys.id == product.category.sys.id %}
             {% assign anchor = product.title | replace: " ", "_" | remove: "/" | downcase %}
             {% assign preview = product.description | xml_escape | truncate: 150 %}
@@ -129,14 +129,29 @@
     <div class="container-fluid">
       <h1 class="text-white"><a name="suppliers">Suppliers</a></h1>
       <div class="jumbotron transparent">
-        {{ site.pages | where:"title", "Suppliers" }}
+
+        <div class="row">
+          {% for supplier in site.data.contentful.spaces.acparts.supplier %}
+
+            <div class="col-sm-1 col-md-2 col-lg-3">
+              <img class="img-thumbnail" title="{{ supplier.title }}" src="{{ supplier.image.url }}">
+            </div>
+
+          {% endfor %}
+        </div>
+
       </div>
     </div>
 
     <div class="container-fluid">
-      <h1 class="text-white"><a name="about">Anthony Campbell</a></h1>
+      {% assign about = site.data.contentful.spaces.acparts.page | where:"sys.id","1ZEyZby0kc6Yww0iU0EUuq" | first %}
+
+      <h1 class="text-white"><a name="about">{{ about.title }}</a></h1>
       <div class="jumbotron transparent">
-        {{ site.pages | where:"title","About" }}
+
+        <img class="about-image rounded float-right" src="{{ about.image.url }}">
+
+        {{ about.content | markdownify }}
       </div>
     </div>
 
@@ -144,15 +159,14 @@
 
       <div class="row">
         <div class="col">
-          <a name="contact">&copy; {{ site.title }} </a><br>
-          Mob <a href="tel:0417 319 276">{{ site.mobile }}</a><br>
-          Ph <a href="tel:{{ site.phone }}">{{ site.phone }}</a><br>
-          Fax {{ site.fax }}<br>
-          <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+          {% assign contact = site.data.contentful.spaces.acparts.page | where:"sys.id","3t043SYibe2UIYKooq4Kii" | first %}
+
+          {{ contact.content | newline_to_br | markdownify }}
         </div>
         <div class="col">
-          {{ site.title }}<br>
-          {{ site.street_address }}
+          {% assign address = site.data.contentful.spaces.acparts.page | where:"sys.id","4nsY1USJ3iyUiIUAqUsW2" | first %}
+
+          {{ address.content | newline_to_br }}
         </div>
       </div>
     </div>

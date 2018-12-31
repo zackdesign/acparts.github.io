@@ -1,9 +1,6 @@
 title: AC Service &amp; Parts
 email: ant@acparts.com.au
 mobile: 0417 319 276
-phone: 03 5233 1085
-fax: 03 5233 1196
-street_address: 495 Larpent Road<br>Colac, VIC 3249
 description: > # this means to ignore newlines until "baseurl:"
   New and second-hand machinery and parts for irrigation, tractors, and other farm needs.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -11,7 +8,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 contentful:
   spaces:
-    - products:
+    - acparts:
         space: ENV_CONTENTFUL_SPACE_ID
         access_token: ENV_CONTENTFUL_ACCESS_TOKEN
 
