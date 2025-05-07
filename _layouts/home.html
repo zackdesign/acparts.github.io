@@ -191,28 +191,122 @@
         position: relative;
         background-color: var(--primary);
         color: var(--white);
-        text-align: center;
-        padding: 5rem 0;
+        padding: 0;
         margin-top: var(--navbar-height);
+        overflow: hidden;
       }
       
       .hero-content {
         position: relative;
         z-index: 2;
+        padding: 5rem 0;
+      }
+
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/tractor-header.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.2;
+        z-index: 1;
       }
       
       .hero-logo {
-        max-width: 200px;
-        margin-bottom: 2rem;
+        max-width: 280px;
         border-radius: 8px;
         box-shadow: var(--box-shadow);
+        background: rgba(255, 255, 255, 0.95);
+        padding: 1.5rem;
+        transition: var(--transition);
+      }
+
+      .hero-logo:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       }
       
-      .hero-img {
-        max-width: 100%;
-        border-radius: 8px;
-        box-shadow: var(--box-shadow);
-        margin-top: 1rem;
+      .hero-text {
+        padding-left: 2rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--white);
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .hero-cta {
+        background-color: var(--accent);
+        color: var(--primary-dark);
+        font-weight: 600;
+        padding: 0.75rem 2rem;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        transition: var(--transition);
+        font-size: 1.1rem;
+      }
+
+      .hero-cta:hover {
+        background-color: var(--accent-dark);
+        color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      }
+
+      .hero-info {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .hero-info-item {
+        display: flex;
+        align-items: center;
+        margin-right: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero-info-icon {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        color: var(--accent);
+      }
+      
+      @media (max-width: 992px) {
+        .hero-text {
+          padding-left: 0;
+          margin-top: 3rem;
+          text-align: center;
+        }
+        
+        .hero-logo-wrapper {
+          display: flex;
+          justify-content: center;
+        }
+        
+        .hero-info {
+          justify-content: center;
+        }
       }
       
       /* Product Section Styles */
@@ -574,11 +668,43 @@
 
     <!-- Hero Section -->
     <section class="hero">
+      <div class="hero-bg"></div>
       <div class="container hero-content">
-        <img src="/images/logo.gif" alt="{{ site.title }}" class="hero-logo">
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <img src="/images/tractor-header.jpg" alt="{{ site.title }}" class="hero-img">
+        <div class="row align-items-center">
+          <div class="col-lg-5">
+            <div class="hero-logo-wrapper">
+              <img src="/images/logo.gif" alt="{{ site.title }}" class="hero-logo">
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="hero-text">
+              <h1 class="hero-title">Quality Agricultural Machinery & Parts</h1>
+              <p class="hero-subtitle">Providing specialized machinery parts and equipment for farming and agricultural needs throughout Australia since 2004.</p>
+              <a href="#contact" class="hero-cta">
+                <i class="fas fa-envelope me-2"></i>Contact Us
+              </a>
+              
+              <div class="hero-info">
+                <div class="hero-info-item">
+                  <div class="hero-info-icon">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                  <div>
+                    <p class="mb-0">Phone</p>
+                    <a href="tel:{{ site.phone }}" class="text-white">{{ site.phone }}</a>
+                  </div>
+                </div>
+                <div class="hero-info-item">
+                  <div class="hero-info-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <div>
+                    <p class="mb-0">Mobile</p>
+                    <a href="tel:{{ site.mobile }}" class="text-white">{{ site.mobile }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
