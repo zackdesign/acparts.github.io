@@ -12,13 +12,6 @@ url: "https://acparts.com.au" # production site URL
 author: "Anthony Campbell"
 logo: "/assets/images/logo.png"
 
-# Social
-social:
-  - platform: facebook
-    url: "https://facebook.com/acserviceandparts"
-  - platform: linkedin
-    url: "https://linkedin.com/company/ac-service-and-parts"
-
 # SEO settings
 lang: en-AU
 locale: en_AU
