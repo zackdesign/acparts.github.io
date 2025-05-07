@@ -153,6 +153,29 @@
         font-weight: 700;
         font-size: 1.5rem;
         color: var(--white) !important;
+        word-break: break-word;
+        line-height: 1.2;
+        max-width: 75%;
+        display: flex;
+        align-items: center;
+      }
+      
+      .navbar > .container {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      .navbar-toggler {
+        flex-shrink: 0;
+        margin-right: 15px;
+      }
+      
+      .navbar-brand img {
+        height: 40px;
+        width: auto;
+        margin-right: 0.75rem;
       }
       
       .nav-link {
@@ -184,6 +207,25 @@
       .nav-link:hover,
       .nav-link.active {
         color: var(--white) !important;
+      }
+      
+      /* Hide title when menu is open on mobile */
+      @media (max-width: 991.98px) {
+        .navbar-collapse.show + .navbar-brand,
+        .navbar-collapse.collapsing + .navbar-brand {
+          display: none;
+        }
+        
+        .navbar-collapse {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background-color: var(--primary);
+          padding: 1rem;
+          z-index: 1000;
+          box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
       }
       
       /* Hero Section Styles */
@@ -293,6 +335,14 @@
       }
       
       @media (max-width: 992px) {
+        :root {
+          --section-spacing: 5rem;
+        }
+        
+        .section-title h2 {
+          font-size: 2rem;
+        }
+        
         .hero-text {
           padding-left: 0;
           margin-top: 3rem;
@@ -306,6 +356,60 @@
         
         .hero-info {
           justify-content: center;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        :root {
+          --section-spacing: 4rem;
+        }
+        
+        .section-title h2 {
+          font-size: 1.75rem;
+        }
+        
+        .navbar {
+          padding: 0.5rem 1rem;
+        }
+        
+        .navbar-brand {
+          font-size: 1.3rem;
+          max-width: 70%;
+          order: 2;
+          text-align: center;
+          justify-content: center;
+        }
+        
+        .navbar-collapse {
+          order: 3;
+        }
+        
+        .navbar-toggler {
+          order: 1;
+        }
+        
+        .product-img-wrapper {
+          height: 180px;
+        }
+      }
+      
+      @media (max-width: 576px) {
+        :root {
+          --section-spacing: 3rem;
+        }
+        
+        .section-title h2 {
+          font-size: 1.5rem;
+        }
+        
+        .navbar-brand {
+          font-size: 1.1rem;
+          max-width: 65%;
+        }
+        
+        .navbar-brand img {
+          height: 30px;
+          margin-right: 0.5rem;
         }
       }
       
@@ -337,6 +441,8 @@
         transition: var(--transition);
         border: none;
         position: relative;
+        display: flex;
+        flex-direction: column;
       }
       
       .product-card:hover {
@@ -350,6 +456,7 @@
         overflow: hidden;
         background-color: var(--gray-100);
         transition: var(--transition);
+        flex-shrink: 0;
       }
       
       .product-card:hover .product-img-wrapper::before {
@@ -389,6 +496,9 @@
         padding: 1.8rem;
         position: relative;
         z-index: 3;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
       }
       
       .product-title {
@@ -419,6 +529,7 @@
         color: var(--text-muted);
         margin-bottom: 1.5rem;
         line-height: 1.6;
+        flex-grow: 1;
       }
       
       .product-footer {
@@ -428,6 +539,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-shrink: 0;
+        margin-top: auto;
       }
       
       .product-category-badge {
@@ -670,45 +783,6 @@
         background-color: var(--gray-800);
         border-color: var(--gray-800);
       }
-      
-      /* Responsive Styles */
-      @media (max-width: 992px) {
-        :root {
-          --section-spacing: 5rem;
-        }
-        
-        .section-title h2 {
-          font-size: 2rem;
-        }
-      }
-      
-      @media (max-width: 768px) {
-        :root {
-          --section-spacing: 4rem;
-        }
-        
-        .section-title h2 {
-          font-size: 1.75rem;
-        }
-        
-        .navbar {
-          padding: 0.5rem 1rem;
-        }
-        
-        .product-img-wrapper {
-          height: 180px;
-        }
-      }
-      
-      @media (max-width: 576px) {
-        :root {
-          --section-spacing: 3rem;
-        }
-        
-        .section-title h2 {
-          font-size: 1.5rem;
-        }
-      }
     </style>
   </head>
 
@@ -716,10 +790,12 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">{{ site.title }}</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="navbar-brand" href="#">
+          AC Service &amp; Parts
+        </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -1072,5 +1148,22 @@
         });
       });
     </script>
+
+    <!-- Script to hide title when menu is open -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var navbarCollapse = document.getElementById('navbarSupportedContent');
+        var navbarBrand = document.querySelector('.navbar-brand');
+        
+        navbarCollapse.addEventListener('show.bs.collapse', function () {
+          navbarBrand.style.display = 'none';
+        });
+        
+        navbarCollapse.addEventListener('hidden.bs.collapse', function () {
+          navbarBrand.style.display = 'flex';
+        });
+      });
+    </script>
   </body>
 </html>
+
