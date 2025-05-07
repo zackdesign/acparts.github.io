@@ -1,11 +1,31 @@
-title: AC Service &amp; Parts
+title: "AC Service & Parts | Farm Machinery & Parts Supplier"
 email: ant@acparts.com.au
-mobile: 0417 319 276
-description: > # this means to ignore newlines until "baseurl:"
-  New and second-hand machinery and parts for irrigation, tractors, and other farm needs.
+phone: "03 5233 1085"
+mobile: "0417 319 276"
+fax: "03 5233 1196"
+address: "495 Larpent Road, Colac, VIC 3249"
+description: >
+  AC Service & Parts specializes in quality new and second-hand farm machinery, parts and equipment
+  for irrigation, tractors, slurry tanks, and other agricultural needs throughout Australia.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://acparts.com.au" # production site URL
+author: "Anthony Campbell"
+logo: "/assets/images/logo.png"
 
+# Social
+social:
+  - platform: facebook
+    url: "https://facebook.com/acserviceandparts"
+  - platform: linkedin
+    url: "https://linkedin.com/company/ac-service-and-parts"
+
+# SEO settings
+lang: en-AU
+locale: en_AU
+seo:
+  keywords: "farm machinery, tractor parts, irrigation equipment, agricultural supplies, vacuum pumps, hydraulic parts, Pearson loader parts, slurry tanks, farm equipment Victoria"
+
+# Contentful
 contentful:
   spaces:
     - acparts:
@@ -14,7 +34,15 @@ contentful:
 
 # Build settings
 markdown: kramdown
+permalink: pretty
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
 exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - README.md
+  - node_modules
+  - .sass-cache

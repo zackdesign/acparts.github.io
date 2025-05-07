@@ -5,185 +5,864 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta name="description" content="{{ site.description }}">
-    <title>{{ site.title }}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    {% seo %}
     <style>
-      body {
-        background-color: #372225;
+      /* Custom Properties */
+      :root {
+        --primary: #3b2c25;
+        --primary-dark: #2a1e1a;
+        --primary-light: #5e4a40;
+        --accent: #e6b17e;
+        --accent-dark: #d69b61;
+        --text-dark: #212529;
+        --text-light: #f8f9fa;
+        --text-muted: #6c757d;
+        --gray-100: #f8f9fa;
+        --gray-200: #e9ecef;
+        --gray-300: #dee2e6;
+        --gray-800: #343a40;
+        --white: #ffffff;
+        --box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        --transition: all 0.3s ease;
+        --section-spacing: 7rem;
+        --navbar-height: 72px;
       }
-      .header {
+      
+      /* Base Styles */
+      body {
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        line-height: 1.7;
+        color: var(--text-dark);
+        background-color: var(--gray-100);
+        overflow-x: hidden;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+      
+      img {
+        max-width: 100%;
+      }
+      
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+      
+      a:hover {
+        color: var(--accent-dark);
+      }
+      
+      p {
+        margin-bottom: 1.5rem;
+      }
+      
+      .text-muted {
+        color: var(--text-muted) !important;
+      }
+      
+      .bg-primary {
+        background-color: var(--primary) !important;
+      }
+      
+      /* Section Styles */
+      .section {
+        padding: var(--section-spacing) 0;
+        position: relative;
+      }
+      
+      .section-sm {
+        padding: calc(var(--section-spacing) / 2) 0;
+      }
+      
+      .section-light {
+        background-color: var(--white);
+      }
+      
+      .section-dark {
+        background-color: var(--primary);
+        color: var(--text-light);
+      }
+      
+      .section-dark h1, 
+      .section-dark h2, 
+      .section-dark h3, 
+      .section-dark h4, 
+      .section-dark h5, 
+      .section-dark h6 {
+        color: var(--white);
+      }
+      
+      .section-accent {
+        background-color: var(--accent);
+      }
+      
+      /* Section Title Styles */
+      .section-title {
+        position: relative;
+        margin-bottom: 3rem;
         text-align: center;
       }
-      .transparent {
-        background:rgba(255,255,255,0.9);
+      
+      .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
       }
-      .img-thumbnail {
-        margin-bottom: 10px;
+      
+      .section-title h2::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -0.5rem;
+        width: 70%;
+        height: 2px;
+        background-color: var(--accent);
+        transform: translateX(-50%);
       }
-      .card {
-        background: inherit;
-        border: 0;
-      }
-      .card img{
+      
+      .section-title p {
+        font-size: 1.1rem;
+        max-width: 700px;
         margin: 0 auto;
-        margin-top: 20px;
+        color: var(--text-muted);
       }
-      .card-footer {
-        border-top: 0;
-        background: inherit;
+      
+      /* Navbar Styles */
+      .navbar {
+        padding: 0.5rem 2rem;
+        background-color: var(--primary) !important;
+        box-shadow: var(--box-shadow);
+        min-height: var(--navbar-height);
       }
-      .product-image {
-        max-height: 200px;
-        width: auto;
+      
+      .navbar-brand {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--white) !important;
       }
-      .about-image {
-        padding: 20px;
+      
+      .nav-link {
+        font-weight: 500;
+        padding: 0.5rem 1rem !important;
+        color: rgba(255,255,255,0.85) !important;
+        position: relative;
+      }
+      
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 1rem;
+        right: 1rem;
+        height: 2px;
+        background-color: var(--accent);
+        transform: scaleX(0);
+        transition: var(--transition);
+        transform-origin: right;
+      }
+      
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+      
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--white) !important;
+      }
+      
+      /* Hero Section Styles */
+      .hero {
+        position: relative;
+        background-color: var(--primary);
+        color: var(--white);
+        text-align: center;
+        padding: 5rem 0;
+        margin-top: var(--navbar-height);
+      }
+      
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+      
+      .hero-logo {
+        max-width: 200px;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        box-shadow: var(--box-shadow);
+      }
+      
+      .hero-img {
+        max-width: 100%;
+        border-radius: 8px;
+        box-shadow: var(--box-shadow);
+        margin-top: 1rem;
+      }
+      
+      /* Product Section Styles */
+      .category-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--gray-300);
+      }
+      
+      .product-card {
+        background-color: var(--white);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--box-shadow);
+        height: 100%;
+        transition: var(--transition);
+        border: none;
+      }
+      
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      }
+      
+      .product-img-wrapper {
+        height: 200px;
+        overflow: hidden;
+        background-color: var(--gray-100);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+      
+      .product-img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        transition: var(--transition);
+      }
+      
+      .product-card:hover .product-img {
+        transform: scale(1.05);
+      }
+      
+      .product-body {
+        padding: 1.5rem;
+      }
+      
+      .product-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+      
+      .product-text {
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+      
+      .product-footer {
+        padding: 1rem 1.5rem;
+        background-color: var(--gray-100);
+        border-top: 1px solid var(--gray-200);
+      }
+      
+      .btn-primary {
+        background-color: var(--accent);
+        border-color: var(--accent);
+        color: var(--primary-dark);
+        font-weight: 600;
+        padding: 0.5rem 1.5rem;
+        border-radius: 4px;
+        transition: var(--transition);
+      }
+      
+      .btn-primary:hover {
+        background-color: var(--accent-dark);
+        border-color: var(--accent-dark);
+        color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      }
+      
+      /* Supplier Section Styles */
+      .supplier-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120px;
+        background-color: var(--white);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--box-shadow);
+        transition: var(--transition);
+      }
+      
+      .supplier-wrapper:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      }
+      
+      .supplier-logo {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        filter: grayscale(100%);
+        opacity: 0.8;
+        transition: var(--transition);
+      }
+      
+      .supplier-wrapper:hover .supplier-logo {
+        filter: grayscale(0%);
+        opacity: 1;
+      }
+      
+      /* About Section Styles */
+      .about-content {
+        position: relative;
+      }
+      
+      .about-img {
+        border-radius: 8px;
+        box-shadow: var(--box-shadow);
+        margin-bottom: 1.5rem;
+      }
+      
+      /* Contact Section Styles */
+      .contact-info, 
+      .address-info {
+        background-color: var(--white);
+        border-radius: 8px;
+        padding: 2rem;
+        height: 100%;
+        box-shadow: var(--box-shadow);
+      }
+      
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+      }
+      
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        border-radius: 50%;
+        background-color: var(--accent);
+        color: var(--primary-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        font-size: 1.2rem;
+        transition: var(--transition);
+      }
+      
+      .contact-item:hover .contact-icon {
+        background-color: var(--primary);
+        color: var(--white);
+        transform: scale(1.1);
+      }
+      
+      .contact-text {
+        flex: 1;
+      }
+      
+      .contact-text h5 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .contact-text p, 
+      .contact-text a {
+        margin-bottom: 0;
+        color: var(--text-muted);
+      }
+      
+      .contact-text a:hover {
+        color: var(--accent);
+      }
+      
+      .business-hours {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--gray-200);
+      }
+      
+      .business-hours h4 {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+      }
+      
+      .business-hours h4 i {
+        color: var(--accent);
+        margin-right: 0.75rem;
+      }
+      
+      .hours-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+      
+      .day {
+        font-weight: 600;
+      }
+      
+      /* Footer Styles */
+      .footer {
+        background-color: var(--primary-dark);
+        color: var(--text-light);
+        padding: 3rem 0 1.5rem;
+        text-align: center;
+      }
+      
+      .footer a {
+        color: var(--accent);
+      }
+      
+      .footer a:hover {
+        color: var(--accent-dark);
+      }
+      
+      .footer p {
+        margin-bottom: 1rem;
+      }
+      
+      .footer-bottom {
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 1.5rem;
+        margin-top: 1.5rem;
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.7);
+      }
+      
+      /* Modal Styles */
+      .modal-content {
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        overflow: hidden;
+      }
+      
+      .modal-header {
+        background-color: var(--primary);
+        color: var(--white);
+        border-bottom: none;
+        padding: 1.5rem;
+      }
+      
+      .modal-header .modal-title {
+        color: var(--white);
+        font-weight: 600;
+      }
+      
+      .modal-header .btn-close {
+        color: var(--white);
+        opacity: 0.8;
+        filter: invert(1) grayscale(100%) brightness(200%);
+      }
+      
+      .modal-body {
+        padding: 2rem;
+      }
+      
+      .modal-body img {
+        border-radius: 8px;
+        box-shadow: var(--box-shadow);
+        max-width: 200px;
+      }
+      
+      .modal-footer {
+        border-top: 1px solid var(--gray-200);
+        padding: 1rem 1.5rem;
+      }
+      
+      .btn-secondary {
+        background-color: var(--gray-800);
+        border-color: var(--gray-800);
+      }
+      
+      /* Responsive Styles */
+      @media (max-width: 992px) {
+        :root {
+          --section-spacing: 5rem;
+        }
+        
+        .section-title h2 {
+          font-size: 2rem;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        :root {
+          --section-spacing: 4rem;
+        }
+        
+        .section-title h2 {
+          font-size: 1.75rem;
+        }
+        
+        .navbar {
+          padding: 0.5rem 1rem;
+        }
+        
+        .product-img-wrapper {
+          height: 180px;
+        }
+      }
+      
+      @media (max-width: 576px) {
+        :root {
+          --section-spacing: 3rem;
+        }
+        
+        .section-title h2 {
+          font-size: 1.5rem;
+        }
       }
     </style>
   </head>
 
   <body>
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
-      <a class="navbar-brand" href="#">{{ site.title }}</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#products">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#suppliers">Suppliers</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a href="tel:{{ site.mobile }}" class="nav-link">{{ site.mobile }}</a>
-          </li>
-        </ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">{{ site.title }}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#products">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#suppliers">Suppliers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="tel:{{ site.mobile }}" class="nav-link">
+                <i class="fas fa-phone-alt me-2"></i>{{ site.mobile }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
 
-    <div class="container-fluid header">
-      <a href="/">
-        <img src="/images/logo.gif" alt="{{ site.title }}">
-        <img src="/images/tractor-header.jpg" alt="{{ site.title }}">
-      </a>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-content">
+        <img src="/images/logo.gif" alt="{{ site.title }}" class="hero-logo">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <img src="/images/tractor-header.jpg" alt="{{ site.title }}" class="hero-img">
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="container-fluid">
-      <h1 class="text-white"><a name="products">Parts and Products</a></h1>
-      <div class="jumbotron transparent">
+    <!-- Products Section -->
+    <section id="products" class="section section-light">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Products & Parts</h2>
+          <p>Quality parts and products for your agricultural machinery needs</p>
+        </div>
+        
         {% for category in site.data.contentful.spaces.acparts.category %}
-          <h2>{{ category.title }}</h2>
-
-          <div class="row">
-          {% for product in site.data.contentful.spaces.acparts.product %}
-            {% if category.sys.id == product.category.sys.id %}
-            {% assign anchor = product.title | replace: " ", "_" | remove: "/" | downcase %}
-            {% assign preview = product.description | xml_escape | truncate: 150 %}
-            <div class="card col-lg-4 col-sm-12 col-md-6">
-              <img class="card-img-top rounded product-image" src="{{ product.image.url }}" alt="{{ product.image.title }}">
-              <div class="card-body">
-                <h4 class="card-title">{{ product.title }}</h4>
-                <p class="card-text">{{ preview }} {% if preview contains "..." %}<a href="#" data-toggle="modal" data-target="#{{ anchor }}">read more &raquo;</a>{% endif %}</p>
-              </div>
-              <div class="card-footer">
-                <a href="mailto:{{ site.email }}?subject={{ product.title }}&body=Hi, I would like to enquire about your {{ product.title }}" class="btn btn-primary">Enquire</a>
-              </div>
-            </div>
-
-            <div class="modal fade" id="{{ anchor }}" tabindex="-1" role="dialog" aria-labelledby="#{{ product.sys.id }}" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">{{ product.title }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <img class="media-object rounded float-right" src="{{ product.image.url }}" alt="{{ product.title }}">
-                    {{ product.description | xml_escape | markdownify }}
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="mailto:{{ site.email }}?subject={{ product.title }}&body=Hi, I would like to enquire about your {{ product.title }}" class="btn btn-primary">Enquire</a>
+          <div class="mb-5">
+            <h3 class="category-title">{{ category.title }}</h3>
+            <div class="row">
+              {% for product in site.data.contentful.spaces.acparts.product %}
+                {% if category.sys.id == product.category.sys.id %}
+                {% assign anchor = product.title | replace: " ", "_" | remove: "/" | downcase %}
+                {% assign preview = product.description | xml_escape | truncate: 150 %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="product-card">
+                    <div class="product-img-wrapper">
+                      <img class="product-img" src="{{ product.image.url }}" alt="{{ product.image.title }}">
+                    </div>
+                    <div class="product-body">
+                      <h4 class="product-title">{{ product.title }}</h4>
+                      <p class="product-text">
+                        {{ preview }} 
+                        {% if preview contains "..." %}
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#{{ anchor }}">read more »</a>
+                        {% endif %}
+                      </p>
+                    </div>
+                    <div class="product-footer">
+                      <a href="mailto:{{ site.email }}?subject={{ product.title }}&body=Hi, I would like to enquire about your {{ product.title }}" class="btn btn-primary">
+                        <i class="fas fa-envelope me-2"></i>Enquire
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+
+                <!-- Product Modal -->
+                <div class="modal fade" id="{{ anchor }}" tabindex="-1" role="dialog" aria-labelledby="#{{ product.sys.id }}" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">{{ product.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-md-4 mb-3">
+                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.title }}">
+                          </div>
+                          <div class="col-md-8">
+                            {{ product.description | xml_escape | markdownify }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="mailto:{{ site.email }}?subject={{ product.title }}&body=Hi, I would like to enquire about your {{ product.title }}" class="btn btn-primary">
+                          <i class="fas fa-envelope me-2"></i>Enquire
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+              {% endfor %}
             </div>
-            {% endif %}
-          {% endfor %}
-            </div>
+          </div>
         {% endfor %}
       </div>
-    </div>
+    </section>
 
-    <div class="container-fluid">
-      <h1 class="text-white"><a name="suppliers">Suppliers</a></h1>
-      <div class="jumbotron transparent">
+    <!-- Suppliers Section -->
+    <section id="suppliers" class="section section-sm" style="background-color: #f8f9fa;">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Suppliers</h2>
+          <p>We partner with the best in the industry to provide quality parts</p>
+        </div>
 
-        <div class="row">
+        <div class="row justify-content-center">
           {% for supplier in site.data.contentful.spaces.acparts.supplier %}
-
-            <div class="col-sm-1 col-md-2 col-lg-3">
-              <img class="img-thumbnail" title="{{ supplier.title }}" src="{{ supplier.image.url }}">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+              <div class="supplier-wrapper">
+                <img class="supplier-logo" title="{{ supplier.title }}" src="{{ supplier.image.url }}" alt="{{ supplier.title }}">
+              </div>
             </div>
-
           {% endfor %}
         </div>
-
       </div>
-    </div>
+    </section>
 
-    <div class="container-fluid">
-      {% assign about = site.data.contentful.spaces.acparts.page | where:"sys.id","1ZEyZby0kc6Yww0iU0EUuq" | first %}
+    <!-- About Section -->
+    <section id="about" class="section section-light">
+      <div class="container">
+        {% assign about = site.data.contentful.spaces.acparts.page | where:"sys.id","1ZEyZby0kc6Yww0iU0EUuq" | first %}
 
-      <h1 class="text-white"><a name="about">{{ about.title }}</a></h1>
-      <div class="jumbotron transparent">
-
-        <img class="about-image rounded float-right" src="{{ about.image.url }}">
-
-        {{ about.content | markdownify }}
-      </div>
-    </div>
-
-    <div class="container-fluid text-white">
-
-      <div class="row">
-        <div class="col">
-          {% assign contact = site.data.contentful.spaces.acparts.page | where:"sys.id","3t043SYibe2UIYKooq4Kii" | first %}
-
-          {{ contact.content | newline_to_br | markdownify }}
+        <div class="section-title">
+          <h2>{{ about.title }}</h2>
         </div>
-        <div class="col">
-          {% assign address = site.data.contentful.spaces.acparts.page | where:"sys.id","4nsY1USJ3iyUiIUAqUsW2" | first %}
-
-          {{ address.content | newline_to_br }}
+        
+        <div class="row align-items-center">
+          <div class="col-lg-7">
+            <div class="about-content">
+              {{ about.content | markdownify }}
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <img class="about-img img-fluid" src="{{ about.image.url }}" alt="{{ about.title }}">
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="navbar"><a href="https://zackdesign.biz">Website by Zack Design</a></div>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <!-- Google tag (gtag.js) -->
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="background-color: #f8f9fa;">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact Us</h2>
+          <p>Get in touch with our team for inquiries and support</p>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6 mb-4 mb-md-0">
+            {% assign contact = site.data.contentful.spaces.acparts.page | where:"sys.id","3t043SYibe2UIYKooq4Kii" | first %}
+            <div class="contact-info">
+              <h4 class="mb-4">Get In Touch</h4>
+              
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="contact-text">
+                  <h5>Mobile</h5>
+                  <p><a href="tel:{{ site.mobile }}">{{ site.mobile }}</a></p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-text">
+                  <h5>Phone</h5>
+                  <p><a href="tel:{{ site.phone }}">{{ site.phone }}</a></p>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-text">
+                  <h5>Email</h5>
+                  <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+                </div>
+              </div>
+              
+              
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            {% assign address = site.data.contentful.spaces.acparts.page | where:"sys.id","4nsY1USJ3iyUiIUAqUsW2" | first %}
+            <div class="address-info">
+              <h4 class="mb-4">Our Location</h4>
+              
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-text">
+                  <h5>Address</h5>
+                  {{ address.content | newline_to_br }}
+                </div>
+              </div>
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <h3>{{ site.title }}</h3>
+            <p>Quality agricultural parts and products for your needs</p>
+            
+            <ul class="list-inline mb-4">
+              <li class="list-inline-item">
+                <a href="#products">Products</a>
+              </li>
+              <li class="list-inline-item">•</li>
+              <li class="list-inline-item">
+                <a href="#suppliers">Suppliers</a>
+              </li>
+              <li class="list-inline-item">•</li>
+              <li class="list-inline-item">
+                <a href="#about">About</a>
+              </li>
+              <li class="list-inline-item">•</li>
+              <li class="list-inline-item">
+                <a href="#contact">Contact</a>
+              </li>
+            </ul>
+            
+            <div class="footer-bottom">
+              <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+              <p><a href="https://zackdesign.biz">Website by Zack Design</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NMW4QD2DNM"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-NMW4QD2DNM');
     </script>
-
+    
+    <!-- Smooth Scrolling -->
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            const navHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = targetPosition - navHeight;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Add active class to nav items based on scroll position
+      window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          const navHeight = document.querySelector('.navbar').offsetHeight;
+          
+          if(pageYOffset >= (sectionTop - navHeight - 100)) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          const href = link.getAttribute('href');
+          if(href === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+    </script>
   </body>
 </html>
