@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AC Parts — wordmark exploration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Big+Shoulders+Display:wght@700;800;900&family=Space+Grotesk:wght@600;700&family=Syne:wght@700;800&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bone: #F4F1EA;
+      --ink: #1C1E1F;
+      --forest: #2C4A3E;
+      --terracotta: #C76A3E;
+      --steel: #C9C4BA;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--bone);
+      color: var(--ink);
+      padding: 4rem 2rem;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin: 0 0 3rem;
+    }
+    .card {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      padding: 3rem 3rem 2rem;
+      background: var(--bone);
+      border: 1px solid var(--steel);
+      border-radius: 4px;
+    }
+    .label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      opacity: 0.6;
+      margin-bottom: 1.5rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: baseline;
+      text-decoration: none;
+      line-height: 1;
+      font-size: clamp(3rem, 8vw, 5rem);
+    }
+    .brand-ac {
+      background: linear-gradient(135deg, var(--forest) 0%, var(--terracotta) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .brand-parts {
+      color: var(--ink);
+    }
+    .tagline {
+      display: block;
+      margin-top: 0.6rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--forest);
+    }
+
+    /* Variant 1 — Big Shoulders Display */
+    .v1 .brand {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    .v1 .brand-ac { margin-right: 0.08em; }
+
+    /* Variant 2 — Space Grotesk */
+    .v2 .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+    .v2 .brand-ac { margin-right: 0.05em; }
+
+    /* Variant 3 — Archivo Black */
+    .v3 .brand {
+      font-family: 'Archivo Black', sans-serif;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+    .v3 .brand-ac { margin-right: 0.06em; }
+
+    /* Variant 4 — Syne */
+    .v4 .brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    .v4 .brand-ac { margin-right: 0.06em; }
+
+    /* Dark background variant row */
+    .dark-row {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      padding: 3rem;
+      background: var(--forest);
+      border-radius: 4px;
+    }
+    .dark-row .label { color: var(--bone); opacity: 0.7; }
+    .dark-row .brand-ac {
+      background: linear-gradient(135deg, var(--bone) 0%, var(--terracotta) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .dark-row .brand-parts { color: var(--bone); }
+    .dark-row .tagline { color: var(--bone); opacity: 0.6; }
+
+    /* Solid (non-gradient) alternative */
+    .solid .brand-ac {
+      background: none;
+      -webkit-text-fill-color: initial;
+      color: var(--terracotta);
+    }
+
+    /* ---- Monogram explorations (pure CSS, no SVG) ---- */
+    .mono-card {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      padding: 3rem;
+      background: var(--bone);
+      border: 1px solid var(--steel);
+      border-radius: 4px;
+      text-align: center;
+    }
+    .mono {
+      display: inline-flex;
+      align-items: baseline;
+      line-height: 0.82;
+      user-select: none;
+    }
+    .mono span { display: inline-block; }
+
+    /* M1 — overlap with multiply blend */
+    .m1 .mono {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: 14rem;
+      letter-spacing: -0.28em;
+    }
+    .m1 .mono-a { color: var(--forest); }
+    .m1 .mono-c { color: var(--terracotta); mix-blend-mode: multiply; }
+
+    /* ---- M1 palette variations ---- */
+    .palette-card {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      padding: 3rem;
+      border: 1px solid var(--steel);
+      border-radius: 4px;
+      text-align: center;
+    }
+    .palette-card .mono {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: 14rem;
+      letter-spacing: -0.28em;
+      line-height: 0.82;
+    }
+    .palette-card .wordmark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      margin-top: 0.8rem;
+    }
+
+    /* P1 — Sage + Oxblood (muted, earthy) */
+    .p1 { background: #F4F1EA; }
+    .p1 .mono-a { color: #5E7A5C; }
+    .p1 .mono-c { color: #8B2E2E; mix-blend-mode: multiply; }
+    .p1 .wordmark { color: #3A1F1F; }
+
+    /* P2 — Ochre + Forest (warm, high contrast) */
+    .p2 { background: #F4F1EA; }
+    .p2 .mono-a { color: #D4A24C; }
+    .p2 .mono-c { color: #2C4A3E; mix-blend-mode: multiply; }
+    .p2 .wordmark { color: #2C4A3E; }
+
+    /* P3 — No blend, hard overlap, Forest A + Terracotta C */
+    .p3 { background: #F4F1EA; }
+    .p3 .mono-a { color: #2C4A3E; }
+    .p3 .mono-c { color: #C76A3E; }
+
+    /* P4 — Cream on Ink (inverted, bold) */
+    .p4 { background: #1C1E1F; border-color: #1C1E1F; }
+    .p4 .mono-a { color: #F4F1EA; }
+    .p4 .mono-c { color: #E4B04A; mix-blend-mode: multiply; }
+    .p4 .wordmark { color: #E4B04A; }
+
+    /* P5 — Opacity overlap (A semi-transparent where C crosses) */
+    .p5 { background: #F4F1EA; }
+    .p5 .mono-a { color: #2C4A3E; }
+    .p5 .mono-c { color: #C76A3E; opacity: 0.9; mix-blend-mode: normal; }
+    .p5 .mono-a { opacity: 0.85; }
+    .p5 .wordmark { color: #2C4A3E; }
+
+    /* P6 — Clay + Deep Teal (fresh, modern agri) */
+    .p6 { background: #F4F1EA; }
+    .p6 .mono-a { color: #1F5C5A; }
+    .p6 .mono-c { color: #D98E5C; mix-blend-mode: multiply; }
+    .p6 .wordmark { color: #1F5C5A; }
+
+    /* P7 — Butter + Oxblood on bone (warm heritage) */
+    .p7 { background: #F4F1EA; }
+    .p7 .mono-a { color: #E8C56A; }
+    .p7 .mono-c { color: #7A2E2E; mix-blend-mode: multiply; }
+    .p7 .wordmark { color: #7A2E2E; }
+
+    /* P8 — Monochrome Forest with depth (low-chroma overlap) */
+    .p8 { background: #F4F1EA; }
+    .p8 .mono-a { color: #2C4A3E; }
+    .p8 .mono-c { color: #8FA89C; mix-blend-mode: multiply; }
+    .p8 .wordmark { color: #2C4A3E; }
+
+    /* M2 — outlined A behind solid C (homage to original layered mark) */
+    .m2 .mono {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 14rem;
+      letter-spacing: -0.32em;
+    }
+    .m2 .mono-a {
+      color: transparent;
+      -webkit-text-stroke: 3px var(--forest);
+    }
+    .m2 .mono-c { color: var(--terracotta); }
+
+    /* M3 — single-color heavy overlap (ligature feel) */
+    .m3 .mono {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: 14rem;
+      letter-spacing: -0.3em;
+    }
+    .m3 .mono-a,
+    .m3 .mono-c { color: var(--forest); }
+
+    /* M4 — two-tone with notched gap via text-shadow */
+    .m4 .mono {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 14rem;
+      letter-spacing: -0.3em;
+    }
+    .m4 .mono-a { color: var(--forest); }
+    .m4 .mono-c {
+      color: var(--terracotta);
+      text-shadow:
+        -4px 0 0 var(--bone),
+        4px 0 0 var(--bone);
+    }
+
+    /* M5 — stacked, C offset down-right, gradient */
+    .m5 .mono {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: 14rem;
+      letter-spacing: -0.35em;
+      position: relative;
+    }
+    .m5 .mono-a {
+      background: linear-gradient(135deg, var(--forest), var(--terracotta));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .m5 .mono-c {
+      color: var(--forest);
+      opacity: 0.18;
+      transform: translate(-0.02em, 0.08em);
+    }
+
+    /* Mark + lockup combo */
+    .lockup {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .lockup .wordmark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--forest);
+    }
+  </style>
+</head>
+<body>
+  <h1>AC Parts — wordmark exploration</h1>
+
+  <div class="mono-card m1">
+    <div class="label">M1 &middot; overlap with multiply blend &middot; Big Shoulders</div>
+    <div class="lockup">
+      <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+      <div class="wordmark">Service &amp; Parts</div>
+    </div>
+  </div>
+
+  <h1 style="margin-top:4rem">M1 palette variations</h1>
+
+  <div class="palette-card p1">
+    <div class="label">P1 &middot; Sage + Oxblood</div>
+    <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+    <div class="wordmark">Service &amp; Parts</div>
+  </div>
+
+  <div class="palette-card p2">
+    <div class="label">P2 &middot; Ochre A + Forest C</div>
+    <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+    <div class="wordmark">Service &amp; Parts</div>
+  </div>
+
+  <div class="palette-card p3">
+    <div class="label">P3 &middot; Forest + Terracotta &middot; no blend, hard overlap</div>
+    <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+    <div class="wordmark">Service &amp; Parts</div>
+  </div>
+
+  <div class="palette-card p4">
+    <div class="label" style="color:#E4B04A;opacity:0.9">P4 &middot; Cream + Butter on Ink (inverted)</div>
+    <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+    <div class="wordmark">Service &amp; Parts</div>
+  </div>
+
+  <div class="palette-card p5">
+    <div class="label">P5 &middot; Forest + Terracotta with opacity softening</div>
+    <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+    <div class="wordmark">Service &amp; Parts</div>
+  </div>
+
+  <div class="palette-card p6">
+    <div class="label">P6 &middot; Deep Teal + Clay</div>
+    <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+    <div class="wordmark">Service &amp; Parts</div>
+  </div>
+
+  <div class="palette-card p7">
+    <div class="label">P7 &middot; Butter + Oxblood &middot; warm heritage</div>
+    <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+    <div class="wordmark">Service &amp; Parts</div>
+  </div>
+
+  <div class="palette-card p8">
+    <div class="label">P8 &middot; Forest + Sage &middot; tonal / low-chroma</div>
+    <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+    <div class="wordmark">Service &amp; Parts</div>
+  </div>
+
+  <h1 style="margin-top:5rem">Other monogram concepts</h1>
+
+  <div class="mono-card m2">
+    <div class="label">M2 &middot; outlined A + solid C &middot; homage to original</div>
+    <div class="lockup">
+      <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+      <div class="wordmark">Service &amp; Parts</div>
+    </div>
+  </div>
+
+  <div class="mono-card m3">
+    <div class="label">M3 &middot; single-color ligature overlap</div>
+    <div class="lockup">
+      <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+      <div class="wordmark">Service &amp; Parts</div>
+    </div>
+  </div>
+
+  <div class="mono-card m4">
+    <div class="label">M4 &middot; two-tone with machined gap</div>
+    <div class="lockup">
+      <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+      <div class="wordmark">Service &amp; Parts</div>
+    </div>
+  </div>
+
+  <div class="mono-card m5">
+    <div class="label">M5 &middot; gradient A with ghosted C</div>
+    <div class="lockup">
+      <div class="mono"><span class="mono-a">A</span><span class="mono-c">C</span></div>
+      <div class="wordmark">Service &amp; Parts</div>
+    </div>
+  </div>
+
+  <h1 style="margin-top:5rem">Wordmark exploration</h1>
+
+  <div class="card v1">
+    <div class="label">01 &middot; Big Shoulders Display &middot; industrial</div>
+    <a class="brand" href="#"><span class="brand-ac">AC</span><span class="brand-parts">PARTS</span></a>
+    <span class="tagline">Service &amp; Parts</span>
+  </div>
+
+  <div class="card v2">
+    <div class="label">02 &middot; Space Grotesk &middot; modern</div>
+    <a class="brand" href="#"><span class="brand-ac">AC</span><span class="brand-parts">PARTS</span></a>
+    <span class="tagline">Service &amp; Parts</span>
+  </div>
+
+  <div class="card v3">
+    <div class="label">03 &middot; Archivo Black &middot; bold</div>
+    <a class="brand" href="#"><span class="brand-ac">AC</span><span class="brand-parts">PARTS</span></a>
+    <span class="tagline">Service &amp; Parts</span>
+  </div>
+
+  <div class="card v4">
+    <div class="label">04 &middot; Syne &middot; distinctive</div>
+    <a class="brand" href="#"><span class="brand-ac">AC</span><span class="brand-parts">PARTS</span></a>
+    <span class="tagline">Service &amp; Parts</span>
+  </div>
+
+  <div class="dark-row v1">
+    <div class="label">01 on Forest ground</div>
+    <a class="brand" href="#"><span class="brand-ac">AC</span><span class="brand-parts">PARTS</span></a>
+    <span class="tagline">Service &amp; Parts</span>
+  </div>
+
+  <div class="card v1 solid">
+    <div class="label">01 &middot; solid terracotta (no gradient)</div>
+    <a class="brand" href="#"><span class="brand-ac">AC</span><span class="brand-parts">PARTS</span></a>
+    <span class="tagline">Service &amp; Parts</span>
+  </div>
+</body>
+</html>

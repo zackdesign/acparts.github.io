@@ -1,1169 +1,1124 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F4F1EA">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    {% seo %}
-    <style>
-      /* Custom Properties */
-      :root {
-        --primary: #3b2c25;
-        --primary-dark: #2a1e1a;
-        --primary-light: #5e4a40;
-        --accent: #e6b17e;
-        --accent-dark: #d69b61;
-        --text-dark: #212529;
-        --text-light: #f8f9fa;
-        --text-muted: #6c757d;
-        --gray-100: #f8f9fa;
-        --gray-200: #e9ecef;
-        --gray-300: #dee2e6;
-        --gray-800: #343a40;
-        --white: #ffffff;
-        --box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        --transition: all 0.3s ease;
-        --section-spacing: 7rem;
-        --navbar-height: 72px;
-      }
-      
-      /* Base Styles */
-      body {
-        font-family: 'Raleway', sans-serif;
-        font-weight: 400;
-        line-height: 1.7;
-        color: var(--text-dark);
-        background-color: var(--gray-100);
-        overflow-x: hidden;
-      }
-      
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Playfair Display', serif;
-        font-weight: 600;
-        color: var(--primary);
-        margin-bottom: 1rem;
-      }
-      
-      img {
-        max-width: 100%;
-      }
-      
-      a {
-        color: var(--accent);
-        text-decoration: none;
-        transition: var(--transition);
-      }
-      
-      a:hover {
-        color: var(--accent-dark);
-      }
-      
-      p {
-        margin-bottom: 1.5rem;
-      }
-      
-      .text-muted {
-        color: var(--text-muted) !important;
-      }
-      
-      .bg-primary {
-        background-color: var(--primary) !important;
-      }
-      
-      /* Section Styles */
-      .section {
-        padding: var(--section-spacing) 0;
-        position: relative;
-      }
-      
-      .section-sm {
-        padding: calc(var(--section-spacing) / 2) 0;
-      }
-      
-      .section-light {
-        background-color: var(--white);
-      }
-      
-      .section-dark {
-        background-color: var(--primary);
-        color: var(--text-light);
-      }
-      
-      .section-dark h1, 
-      .section-dark h2, 
-      .section-dark h3, 
-      .section-dark h4, 
-      .section-dark h5, 
-      .section-dark h6 {
-        color: var(--white);
-      }
-      
-      .section-accent {
-        background-color: var(--accent);
-      }
-      
-      /* Section Title Styles */
-      .section-title {
-        position: relative;
-        margin-bottom: 3rem;
-        text-align: center;
-      }
-      
-      .section-title h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        position: relative;
-        display: inline-block;
-      }
-      
-      .section-title h2::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        bottom: -0.5rem;
-        width: 70%;
-        height: 2px;
-        background-color: var(--accent);
-        transform: translateX(-50%);
-      }
-      
-      .section-title p {
-        font-size: 1.1rem;
-        max-width: 700px;
-        margin: 0 auto;
-        color: var(--text-muted);
-      }
-      
-      /* Navbar Styles */
-      .navbar {
-        padding: 0.5rem 2rem;
-        background-color: var(--primary) !important;
-        box-shadow: var(--box-shadow);
-        min-height: var(--navbar-height);
-      }
-      
-      .navbar-brand {
-        font-family: 'Playfair Display', serif;
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: var(--white) !important;
-        word-break: break-word;
-        line-height: 1.2;
-        max-width: 75%;
-        display: flex;
-        align-items: center;
-      }
-      
-      .navbar > .container {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: space-between;
-      }
-      
-      .navbar-toggler {
-        flex-shrink: 0;
-        margin-right: 15px;
-      }
-      
-      .navbar-brand img {
-        height: 40px;
-        width: auto;
-        margin-right: 0.75rem;
-      }
-      
-      .nav-link {
-        font-weight: 500;
-        padding: 0.5rem 1rem !important;
-        color: rgba(255,255,255,0.85) !important;
-        position: relative;
-      }
-      
-      .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 1rem;
-        right: 1rem;
-        height: 2px;
-        background-color: var(--accent);
-        transform: scaleX(0);
-        transition: var(--transition);
-        transform-origin: right;
-      }
-      
-      .nav-link:hover::after,
-      .nav-link.active::after {
-        transform: scaleX(1);
-        transform-origin: left;
-      }
-      
-      .nav-link:hover,
-      .nav-link.active {
-        color: var(--white) !important;
-      }
-      
-      /* Hide title when menu is open on mobile */
-      @media (max-width: 991.98px) {
-        .navbar-collapse.show + .navbar-brand,
-        .navbar-collapse.collapsing + .navbar-brand {
-          display: none;
-        }
-        
-        .navbar-collapse {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background-color: var(--primary);
-          padding: 1rem;
-          z-index: 1000;
-          box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-      }
-      
-      /* Hero Section Styles */
-      .hero {
-        position: relative;
-        background-color: var(--primary);
-        color: var(--white);
-        padding: 0;
-        margin-top: var(--navbar-height);
-        overflow: hidden;
-      }
-      
-      .hero-content {
-        position: relative;
-        z-index: 2;
-        padding: 5rem 0;
-      }
+  {% seo %}
 
-      .hero-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('/images/tractor-header.jpg');
-        background-size: cover;
-        background-position: center;
-        opacity: 0.2;
-        z-index: 1;
-      }
-      
-      .hero-logo {
-        max-width: 280px;
-        border-radius: 8px;
-        box-shadow: var(--box-shadow);
-        background: rgba(255, 255, 255, 0.95);
-        padding: 1.5rem;
-        transition: var(--transition);
-      }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-      .hero-logo:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      }
-      
-      .hero-text {
-        padding-left: 2rem;
-      }
+  <link rel="icon" href="/favicon.ico">
 
-      .hero-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        color: var(--white);
-      }
+  {% assign pages = site.data.contentful.spaces.acparts.page %}
+  {% assign suppliers = site.data.contentful.spaces.acparts.supplier %}
+  {% assign categories = site.data.contentful.spaces.acparts.category %}
+  {% assign products = site.data.contentful.spaces.acparts.product %}
+  {% for p in pages %}{% if p.title == "Anthony Campbell" %}{% assign about = p %}{% endif %}{% endfor %}
 
-      .hero-subtitle {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-        opacity: 0.9;
-      }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "AC Service & Parts",
+    "image": "https://acparts.com.au/images/logo.gif",
+    "url": "https://acparts.com.au",
+    "telephone": "{{ site.phone }}",
+    "email": "{{ site.email }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "495 Larpent Road",
+      "addressLocality": "Colac",
+      "addressRegion": "VIC",
+      "postalCode": "3249",
+      "addressCountry": "AU"
+    },
+    "founder": "Anthony Campbell",
+    "foundingDate": "2004",
+    "description": {{ site.description | strip_newlines | jsonify }}
+  }
+  </script>
 
-      .hero-cta {
-        background-color: var(--accent);
-        color: var(--primary-dark);
-        font-weight: 600;
-        padding: 0.75rem 2rem;
-        border-radius: 4px;
-        text-decoration: none;
-        display: inline-block;
-        transition: var(--transition);
-        font-size: 1.1rem;
-      }
+  <style>
+    /* === RESET + TOKENS === */
+    :root {
+      --bone: #F4F1EA;
+      --bone-dim: #ECE7DC;
+      --paper: #E6E1D4;
+      --ink: #1C1E1F;
+      --ink-soft: #3a3a3a;
+      --ink-mute: #6a6a6a;
+      --forest: #2C4A3E;
+      --forest-dark: #1F3A2E;
+      --terracotta: #C76A3E;
+      --terracotta-dark: #A8562F;
+      --steel: #C9C4BA;
+      --steel-soft: #DFDACF;
+      --teal: #3D8681; /* logo only */
 
-      .hero-cta:hover {
-        background-color: var(--accent-dark);
-        color: var(--primary-dark);
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-      }
+      --radius: 2px;
+      --fluid-1: clamp(.5rem, 1vw, .75rem);
+      --fluid-2: clamp(1rem, 2vw, 1.5rem);
+      --fluid-3: clamp(1.5rem, 3vw, 2.5rem);
+      --fluid-4: clamp(2rem, 5vw, 4rem);
+      --fluid-5: clamp(3rem, 7vw, 6rem);
+    }
 
-      .hero-info {
-        margin-top: 2rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(255,255,255,0.2);
-        display: flex;
-        flex-wrap: wrap;
-      }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 16px; line-height: 1.6;
+      color: var(--ink); background: var(--bone);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img, svg { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; }
+    a { color: var(--forest); text-decoration: none; transition: color .15s; }
+    a:hover { color: var(--forest-dark); }
+    :focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; border-radius: 2px; }
 
-      .hero-info-item {
-        display: flex;
-        align-items: center;
-        margin-right: 2rem;
-        margin-bottom: 1rem;
-      }
+    /* === TYPE === */
+    h1, h2, h3, h4 {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      margin: 0 0 1rem;
+      color: var(--ink);
+    }
+    h1 { font-size: clamp(2.5rem, 7vw, 4.75rem); }
+    h2 { font-size: clamp(1.85rem, 5vw, 3rem); }
+    h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); font-weight: 700; letter-spacing: -0.01em; }
+    p { margin: 0 0 1rem; }
 
-      .hero-info-icon {
-        width: 40px;
-        height: 40px;
-        background-color: rgba(255,255,255,0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1rem;
-        color: var(--accent);
-      }
-      
-      @media (max-width: 992px) {
-        :root {
-          --section-spacing: 5rem;
-        }
-        
-        .section-title h2 {
-          font-size: 2rem;
-        }
-        
-        .hero-text {
-          padding-left: 0;
-          margin-top: 3rem;
-          text-align: center;
-        }
-        
-        .hero-logo-wrapper {
-          display: flex;
-          justify-content: center;
-        }
-        
-        .hero-info {
-          justify-content: center;
-        }
-      }
-      
-      @media (max-width: 768px) {
-        :root {
-          --section-spacing: 4rem;
-        }
-        
-        .section-title h2 {
-          font-size: 1.75rem;
-        }
-        
-        .navbar {
-          padding: 0.5rem 1rem;
-        }
-        
-        .navbar-brand {
-          font-size: 1.3rem;
-          max-width: 70%;
-          order: 2;
-          text-align: center;
-          justify-content: center;
-        }
-        
-        .navbar-collapse {
-          order: 3;
-        }
-        
-        .navbar-toggler {
-          order: 1;
-        }
-        
-        .product-img-wrapper {
-          height: 180px;
-        }
-      }
-      
-      @media (max-width: 576px) {
-        :root {
-          --section-spacing: 3rem;
-        }
-        
-        .section-title h2 {
-          font-size: 1.5rem;
-        }
-        
-        .navbar-brand {
-          font-size: 1.1rem;
-          max-width: 65%;
-        }
-        
-        .navbar-brand img {
-          height: 30px;
-          margin-right: 0.5rem;
-        }
-      }
-      
-      /* Product Section Styles */
-      .category-title {
-        font-size: 1.75rem;
-        margin-bottom: 2rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 1px solid var(--gray-300);
-        position: relative;
-      }
-      
-      .category-title::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: -1px;
-        width: 80px;
-        height: 3px;
-        background-color: var(--accent);
-      }
-      
-      .product-card {
-        background-color: var(--white);
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: var(--box-shadow);
-        height: 100%;
-        transition: var(--transition);
-        border: none;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-      }
-      
-      .product-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      }
-      
-      .product-img-wrapper {
-        height: 220px;
-        position: relative;
-        overflow: hidden;
-        background-color: var(--gray-100);
-        transition: var(--transition);
-        flex-shrink: 0;
-      }
-      
-      .product-card:hover .product-img-wrapper::before {
-        opacity: 0.3;
-      }
-      
-      .product-img-wrapper::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
-        opacity: 0;
-        z-index: 1;
-        transition: var(--transition);
-      }
-      
-      .product-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        padding: 1.5rem;
-        transition: transform 0.5s ease;
-        z-index: 2;
-      }
-      
-      .product-card:hover .product-img {
-        transform: scale(1.08);
-      }
-      
-      .product-body {
-        padding: 1.8rem;
-        position: relative;
-        z-index: 3;
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-      }
-      
-      .product-title {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-        color: var(--primary);
-        position: relative;
-        padding-bottom: 0.8rem;
-        transition: var(--transition);
-      }
-      
-      .product-title::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 40px;
-        height: 2px;
-        background-color: var(--accent);
-        transition: var(--transition);
-      }
-      
-      .product-card:hover .product-title::after {
-        width: 60px;
-      }
-      
-      .product-text {
-        color: var(--text-muted);
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-        flex-grow: 1;
-      }
-      
-      .product-footer {
-        padding: 1.2rem 1.8rem;
-        background-color: var(--gray-100);
-        border-top: 1px solid var(--gray-200);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-shrink: 0;
-        margin-top: auto;
-      }
-      
-      .product-category-badge {
-        display: inline-block;
-        padding: 0.3rem 0.8rem;
-        background-color: rgba(230, 177, 126, 0.15);
-        color: var(--accent-dark);
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-      
-      .btn-primary {
-        background-color: var(--accent);
-        border-color: var(--accent);
-        color: var(--primary-dark);
-        font-weight: 600;
-        padding: 0.5rem 1.5rem;
-        border-radius: 4px;
-        transition: var(--transition);
-      }
-      
-      .btn-primary:hover {
-        background-color: var(--accent-dark);
-        border-color: var(--accent-dark);
-        color: var(--primary-dark);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-      }
-      
-      .product-modal-img {
-        border-radius: 8px;
-        box-shadow: var(--box-shadow);
-        max-width: 100%;
-        max-height: 300px;
-        width: auto;
-        display: block;
-        margin: 0 auto;
-      }
-      
-      /* Supplier Section Styles */
-      .supplier-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 120px;
-        background-color: var(--white);
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-      }
-      
-      .supplier-wrapper:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-      }
-      
-      .supplier-logo {
-        max-height: 100%;
-        max-width: 100%;
-        object-fit: contain;
-        filter: grayscale(100%);
-        opacity: 0.8;
-        transition: var(--transition);
-      }
-      
-      .supplier-wrapper:hover .supplier-logo {
-        filter: grayscale(0%);
-        opacity: 1;
-      }
-      
-      /* About Section Styles */
-      .about-content {
-        position: relative;
-      }
-      
-      .about-img {
-        border-radius: 8px;
-        box-shadow: var(--box-shadow);
-        margin-bottom: 1.5rem;
-      }
-      
-      /* Contact Section Styles */
-      .contact-info, 
-      .address-info {
-        background-color: var(--white);
-        border-radius: 8px;
-        padding: 2rem;
-        height: 100%;
-        box-shadow: var(--box-shadow);
-      }
-      
-      .contact-item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 1.5rem;
-      }
-      
-      .contact-icon {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-        border-radius: 50%;
-        background-color: var(--accent);
-        color: var(--primary-dark);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1rem;
-        font-size: 1.2rem;
-        transition: var(--transition);
-      }
-      
-      .contact-item:hover .contact-icon {
-        background-color: var(--primary);
-        color: var(--white);
-        transform: scale(1.1);
-      }
-      
-      .contact-text {
-        flex: 1;
-      }
-      
-      .contact-text h5 {
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-      }
-      
-      .contact-text p, 
-      .contact-text a {
-        margin-bottom: 0;
-        color: var(--text-muted);
-      }
-      
-      .contact-text a:hover {
-        color: var(--accent);
-      }
-      
-      .business-hours {
-        margin-top: 2rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--gray-200);
-      }
-      
-      .business-hours h4 {
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-      }
-      
-      .business-hours h4 i {
-        color: var(--accent);
-        margin-right: 0.75rem;
-      }
-      
-      .hours-item {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.5rem;
-      }
-      
-      .day {
-        font-weight: 600;
-      }
-      
-      /* Footer Styles */
-      .footer {
-        background-color: var(--primary-dark);
-        color: var(--text-light);
-        padding: 3rem 0 1.5rem;
-        text-align: center;
-      }
-      
-      .footer a {
-        color: var(--accent);
-      }
-      
-      .footer a:hover {
-        color: var(--accent-dark);
-      }
-      
-      .footer p {
-        margin-bottom: 1rem;
-      }
-      
-      .footer-bottom {
-        border-top: 1px solid rgba(255,255,255,0.1);
-        padding-top: 1.5rem;
-        margin-top: 1.5rem;
-        font-size: 0.9rem;
-        color: rgba(255,255,255,0.7);
-      }
-      
-      /* Modal Styles */
-      .modal-content {
-        border: none;
-        border-radius: 8px;
-        box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-        overflow: hidden;
-      }
-      
-      .modal-header {
-        background-color: var(--primary);
-        color: var(--white);
-        border-bottom: none;
-        padding: 1.5rem;
-      }
-      
-      .modal-header .modal-title {
-        color: var(--white);
-        font-weight: 600;
-      }
-      
-      .modal-header .btn-close {
-        color: var(--white);
-        opacity: 0.8;
-        filter: invert(1) grayscale(100%) brightness(200%);
-      }
-      
-      .modal-body {
-        padding: 2rem;
-      }
-      
-      .modal-body img {
-        border-radius: 8px;
-        box-shadow: var(--box-shadow);
-        max-width: 200px;
-      }
-      
-      .modal-footer {
-        border-top: 1px solid var(--gray-200);
-        padding: 1rem 1.5rem;
-      }
-      
-      .btn-secondary {
-        background-color: var(--gray-800);
-        border-color: var(--gray-800);
-      }
-    </style>
-  </head>
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-family: 'Exo 2', sans-serif; font-weight: 700;
+      font-size: .7rem; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--terracotta);
+      margin: 0 0 1.25rem;
+    }
+    .eyebrow::before {
+      content: ''; width: 1.5rem; height: 1px; background: var(--terracotta);
+    }
+    .lede {
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 40ch;
+    }
 
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container">
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#">
-          AC Service &amp; Parts
-        </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#products">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#suppliers">Suppliers</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a href="tel:{{ site.mobile }}" class="nav-link">
-                <i class="fas fa-phone-alt me-2"></i>{{ site.mobile }}
-              </a>
-            </li>
-          </ul>
-        </div>
+    /* === LAYOUT === */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-inline: 1.25rem;
+    }
+    @media (min-width: 768px) { .container { padding-inline: 2rem; } }
+    @media (min-width: 1024px) { .container { padding-inline: 3rem; } }
+
+    .section {
+      padding-block: var(--fluid-5);
+    }
+    .section + .section:not(.band):not(.suppliers):not(.about):not(.contact) { border-top: 1px solid var(--steel); }
+
+    /* === HEADER === */
+    .site-header {
+      position: fixed; inset: 0 0 auto 0;
+      background: rgba(244,241,234,0.88);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border-bottom: 1px solid rgba(28,30,31,0.08);
+      z-index: 50;
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 72px;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: .7rem;
+      text-decoration: none; color: var(--ink);
+    }
+    .brand-mark { width: 84px; height: 60px; color: var(--teal); flex-shrink: 0; }
+    .brand-mark svg { width: 100%; height: 100%; display: block; }
+    .brand-words { display: flex; flex-direction: column; line-height: 1; gap: .3rem; }
+    .brand-name {
+      font-family: 'Exo 2', sans-serif; font-weight: 900;
+      font-size: .95rem; letter-spacing: .01em; color: var(--ink);
+      text-transform: uppercase;
+    }
+    .brand-tag {
+      font-family: 'Inter', sans-serif; font-weight: 500;
+      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--terracotta);
+    }
+    @media (min-width: 768px) {
+      .brand-mark { width: 112px; height: 80px; }
+      .brand-name { font-size: 1.1rem; }
+      .brand-tag { font-size: .65rem; }
+    }
+    /* keep the header comfortable when the mark is bigger */
+    .nav { min-height: 92px; }
+    .site-header { /* taller now */ }
+
+    .nav-menu { display: none; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; padding: 0; margin: 0; }
+    .nav-links a {
+      color: var(--ink); font-weight: 500; font-size: .95rem;
+      position: relative; padding: .25rem 0;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+      background: var(--terracotta); transform: scaleX(0); transform-origin: left;
+      transition: transform .2s ease;
+    }
+    .nav-links a:hover::after, .nav-links a:focus-visible::after { transform: scaleX(1); }
+
+    .nav-cta {
+      background: var(--forest); color: var(--bone);
+      padding: .7rem 1.25rem; border-radius: var(--radius);
+      font-weight: 600; font-size: .85rem; letter-spacing: .04em;
+    }
+    .nav-cta:hover { background: var(--forest-dark); color: var(--bone); }
+
+    .nav-toggle {
+      background: none; border: 0; padding: 0; margin: 0;
+      width: 44px; height: 44px; flex-shrink: 0;
+      display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 6px; color: var(--ink);
+    }
+    .nav-toggle i {
+      display: block; width: 26px; height: 2px; background: var(--ink);
+      transition: transform .25s ease, opacity .15s ease;
+    }
+    .nav[data-open="true"] .nav-toggle i:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav[data-open="true"] .nav-toggle i:nth-child(2) { opacity: 0; }
+    .nav[data-open="true"] .nav-toggle i:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* mobile drawer — sits outside the header so header's backdrop-filter doesn't bleed through */
+    .nav-drawer {
+      position: fixed; inset: 0;
+      background: #F4F1EA;
+      padding: calc(92px + 2rem) 1.5rem 3rem;
+      opacity: 0; visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity .25s ease, visibility 0s linear .25s, transform .25s ease;
+      display: flex; flex-direction: column; gap: 1.5rem;
+      z-index: 49;
+      overflow-y: auto;
+    }
+    body.drawer-open .nav-drawer {
+      opacity: 1; visibility: visible; transform: translateY(0);
+      transition: opacity .25s ease, visibility 0s, transform .25s ease;
+    }
+    .nav-drawer .nav-links {
+      display: flex; flex-direction: column; gap: 1.5rem;
+      list-style: none; padding: 0; margin: 0;
+    }
+    .nav-drawer .nav-links a {
+      font-family: 'Exo 2', sans-serif; font-size: 2rem; font-weight: 900;
+      color: var(--ink);
+    }
+    .nav-drawer .nav-cta { align-self: flex-start; margin-top: 1rem; font-size: 1rem; padding: 1rem 2rem; }
+
+    @media (min-width: 900px) {
+      .nav-toggle { display: none; }
+      .nav-drawer { display: none; }
+      .nav-menu { display: flex; }
+    }
+
+    /* === HERO === */
+    .hero {
+      padding-top: calc(72px + 3rem);
+      padding-bottom: var(--fluid-4);
+      position: relative; overflow: hidden;
+    }
+    .hero-stack {
+      display: grid; gap: 2.5rem;
+    }
+    .hero-copy { order: 2; }
+    .hero-photo { order: 1; }
+    @media (min-width: 900px) {
+      .hero { padding-top: calc(72px + 5rem); padding-bottom: var(--fluid-5); }
+      .hero-stack { grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center; }
+      .hero-copy { order: 1; }
+      .hero-photo { order: 2; }
+    }
+    @media (min-width: 1200px) {
+      .hero-stack { grid-template-columns: 1.6fr 1fr; gap: 5rem; }
+    }
+
+    .hero h1 strong {
+      color: var(--forest); font-weight: 900;
+    }
+    .hero .lede { margin-block: 1.5rem 0; max-width: 44ch; font-size: clamp(1.1rem, 2vw, 1.35rem); }
+
+    .hero-actions {
+      margin-top: 2rem; display: flex; gap: .75rem; flex-wrap: wrap;
+    }
+
+    .hero-meta {
+      margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid var(--steel);
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .hero-meta dt {
+      font-family: 'Exo 2', sans-serif; font-weight: 700;
+      font-size: .65rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--terracotta); margin: 0 0 .3rem;
+    }
+    .hero-meta dd { margin: 0; font-weight: 500; font-size: .95rem; }
+
+    .hero-photo {
+      aspect-ratio: 4 / 5;
+      background:
+        linear-gradient(180deg, rgba(44,74,62,0) 50%, rgba(28,30,31,0.45) 100%),
+        url('https://images.unsplash.com/photo-1562672852-e392aaad0c17?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1400')
+        center/cover;
+      border-radius: var(--radius);
+      position: relative;
+    }
+    @media (min-width: 900px) {
+      .hero-photo { aspect-ratio: 5 / 6; }
+    }
+    .hero-photo-caption {
+      position: absolute; bottom: 1rem; left: 1rem; right: 1rem;
+      color: var(--bone); font-size: .7rem; letter-spacing: .2em;
+      text-transform: uppercase; font-weight: 500; opacity: .9;
+    }
+
+    /* === BUTTONS === */
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .95rem 1.5rem;
+      font-weight: 600; font-size: .95rem; letter-spacing: .02em;
+      border: 2px solid transparent; border-radius: var(--radius);
+      text-decoration: none; transition: all .15s;
+      white-space: nowrap;
+    }
+    .btn-primary { background: var(--forest); color: var(--bone); }
+    .btn-primary:hover { background: var(--forest-dark); color: var(--bone); }
+    .btn-secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn-secondary:hover { background: var(--ink); color: var(--bone); }
+    .btn-accent { background: var(--terracotta); color: var(--bone); }
+    .btn-accent:hover { background: var(--terracotta-dark); color: var(--bone); }
+    .btn-ghost { background: transparent; color: var(--bone); border-color: rgba(244,241,234,0.6); }
+    .btn-ghost:hover { background: var(--bone); color: var(--ink); border-color: var(--bone); }
+
+    /* === SERVICES === */
+    .services { background: var(--bone); }
+    .services-header { max-width: 32rem; }
+    .services-header h2 { margin-bottom: 1rem; }
+
+    .services-list {
+      margin-top: 3rem;
+      list-style: none; padding: 0;
+      display: grid; gap: 0;
+      border-top: 1px solid var(--steel);
+    }
+    .service {
+      display: grid; gap: 1rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--steel);
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        "num title"
+        "num body";
+    }
+    .service-num {
+      grid-area: num;
+      font-family: 'Exo 2', sans-serif; font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--forest); line-height: 1;
+      margin-right: 1.5rem; min-width: 3rem;
+      letter-spacing: -.02em;
+    }
+    .service h3 { grid-area: title; margin: 0 0 .25rem; align-self: end; }
+    .service p { grid-area: body; margin: 0; color: var(--ink-soft); font-size: 1rem; }
+
+    @media (min-width: 768px) {
+      .services-list {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 3rem;
+      }
+      .service { padding: 2.5rem 0; }
+    }
+    @media (min-width: 1024px) {
+      .service {
+        padding: 3rem 0;
+        grid-template-columns: auto 1fr;
+      }
+      .service-num { font-size: 4rem; min-width: 5rem; }
+    }
+
+    /* === CINEMATIC BAND === */
+    .band {
+      position: relative;
+      min-height: 60vh;
+      padding-block: var(--fluid-5);
+      background:
+        linear-gradient(180deg, rgba(28,30,31,0.35) 0%, rgba(28,30,31,0.7) 100%),
+        url('https://images.unsplash.com/photo-1600476434723-78d2cf0c63e0?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800')
+        center/cover fixed;
+      color: var(--bone);
+      display: flex; align-items: center;
+    }
+    @media (max-width: 767px) {
+      .band { background-attachment: scroll; }
+    }
+    .band-inner {
+      max-width: 42rem;
+    }
+    .band .eyebrow { color: var(--bone); opacity: .85; }
+    .band .eyebrow::before { background: var(--bone); }
+    .band h2 {
+      color: var(--bone);
+      font-size: clamp(2rem, 6vw, 4rem);
+      margin-bottom: 1.5rem;
+    }
+    .band p {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      opacity: .9;
+      max-width: 48ch;
+    }
+
+    /* === SUPPLIERS === */
+    .suppliers { background: var(--bone-dim); }
+    .suppliers-header {
+      display: grid; gap: 2rem; align-items: end;
+      margin-bottom: 3rem;
+    }
+    @media (min-width: 900px) {
+      .suppliers-header {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .supplier-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .5rem;
+    }
+    @media (min-width: 500px) { .supplier-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 768px) { .supplier-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 1024px) { .supplier-grid { grid-template-columns: repeat(6, 1fr); } }
+
+    .supplier {
+      aspect-ratio: 4 / 3;
+      background: var(--bone);
+      display: grid; place-items: center;
+      padding: 1rem;
+      transition: all .2s;
+      position: relative;
+    }
+    .supplier img {
+      max-height: 50%; max-width: 80%;
+      object-fit: contain;
+      filter: grayscale(1) contrast(.9);
+      opacity: .7;
+      transition: all .2s;
+    }
+    .supplier:hover img { filter: none; opacity: 1; transform: scale(1.05); }
+    .supplier::after {
+      content: ''; position: absolute; inset: 0;
+      box-shadow: inset 0 0 0 1px rgba(28,30,31,0.05);
+      pointer-events: none;
+    }
+
+    /* === CATALOGUE === */
+    .catalogue {
+      background: var(--bone);
+      position: relative;
+    }
+    .catalogue-header {
+      display: grid; gap: 1.5rem; align-items: end;
+      margin-bottom: 3rem;
+    }
+    @media (min-width: 768px) {
+      .catalogue-header { grid-template-columns: 2fr 1fr; }
+    }
+
+    .category-block {
+      margin-top: 2.5rem;
+    }
+    .category-title {
+      display: flex; align-items: center; gap: 1rem;
+      font-family: 'Exo 2', sans-serif; font-weight: 700;
+      font-size: .9rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--forest);
+      padding-bottom: .75rem; margin: 0 0 1.5rem;
+      border-bottom: 1px solid var(--steel);
+    }
+    .category-title::before {
+      content: attr(data-num);
+      font-size: .7rem; color: var(--terracotta); letter-spacing: .15em;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .5rem;
+      list-style: none; padding: 0; margin: 0;
+    }
+    @media (min-width: 500px) { .product-list { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .product-list { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1200px) { .product-list { grid-template-columns: repeat(4, 1fr); } }
+
+    .product {
+      display: flex; gap: 1rem;
+      padding: 1rem;
+      background: var(--bone);
+      border: 1px solid var(--steel);
+      transition: all .15s;
+      cursor: pointer;
+      text-align: left;
+      font: inherit; color: inherit;
+      width: 100%;
+    }
+    .product:hover, .product:focus-visible {
+      border-color: var(--forest);
+      background: var(--bone-dim);
+      transform: translateY(-2px);
+    }
+    .product img {
+      width: 68px; height: 68px; object-fit: cover; flex-shrink: 0;
+      background: var(--paper);
+    }
+    .product-meta { min-width: 0; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+    .product-title {
+      font-weight: 600; font-size: .9rem; color: var(--ink);
+      line-height: 1.25; margin: 0 0 .25rem;
+      overflow: hidden; display: -webkit-box;
+      -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    }
+    .product-hint {
+      font-size: .7rem; color: var(--terracotta); font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: .3rem;
+    }
+
+    /* --- Product Modal --- */
+    .product-modal {
+      border: 0; padding: 0; margin: auto;
+      width: min(720px, 100vw - 2rem);
+      max-height: min(80vh, 760px);
+      background: var(--bone);
+      border-radius: var(--radius);
+      box-shadow: 0 30px 80px rgba(0,0,0,.25);
+      overflow: hidden;
+    }
+    .product-modal::backdrop {
+      background: rgba(28,30,31,0.6);
+      backdrop-filter: blur(4px);
+    }
+    .product-modal[open] {
+      display: grid; grid-template-rows: auto 1fr auto;
+    }
+    .product-modal-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--steel);
+    }
+    .product-modal-category {
+      font-family: 'Exo 2', sans-serif; font-weight: 700;
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--terracotta);
+    }
+    .product-modal-close {
+      background: none; border: 0; padding: .25rem; margin: -.25rem;
+      color: var(--ink); line-height: 1; font-size: 1.75rem;
+      cursor: pointer; transition: color .15s;
+    }
+    .product-modal-close:hover { color: var(--terracotta); }
+    .product-modal-body {
+      padding: 2rem 1.5rem;
+      overflow-y: auto;
+      display: grid; gap: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .product-modal-body { grid-template-columns: 240px 1fr; padding: 2rem; gap: 2rem; }
+    }
+    .product-modal-img {
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+      background: var(--paper);
+    }
+    .product-modal-title {
+      margin: 0 0 1rem; font-family: 'Exo 2', sans-serif; font-weight: 900;
+      font-size: clamp(1.4rem, 3vw, 1.75rem); line-height: 1.1;
+    }
+    .product-modal-desc {
+      font-size: .95rem; line-height: 1.6; color: var(--ink-soft);
+    }
+    .product-modal-desc p { margin: 0 0 .75rem; }
+    .product-modal-desc p:last-child { margin-bottom: 0; }
+    .product-modal-foot {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--steel);
+      display: flex; gap: .75rem; flex-wrap: wrap; justify-content: flex-end;
+      background: var(--paper);
+    }
+    body:has(.product-modal[open]) { overflow: hidden; }
+
+    /* === ABOUT === */
+    .about {
+      background: var(--paper);
+      position: relative; overflow: hidden;
+    }
+    .about::before {
+      content: ''; position: absolute; top: -8%; right: -12%;
+      width: min(620px, 80vw); aspect-ratio: 1 / 0.93;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 204 191'><g font-family='Exo 2,sans-serif' font-weight='900' fill='none' stroke='%232C4A3E' stroke-width='1.2'><text x='0' y='191' font-size='220'>A</text><text x='204' y='158' font-size='220' text-anchor='end'>C</text></g></svg>") no-repeat center/contain;
+      opacity: .08; pointer-events: none;
+    }
+    .about > .container { position: relative; }
+
+    .about-inner {
+      display: grid; gap: 2.5rem;
+    }
+    @media (min-width: 900px) {
+      .about-inner {
+        grid-template-columns: 1fr 1.4fr;
+        gap: 4rem;
+        align-items: start;
+      }
+    }
+    .about-photo {
+      aspect-ratio: 4 / 5;
+      object-fit: cover; width: 100%;
+      border-radius: var(--radius);
+    }
+    .about-body {
+      font-size: 1.05rem;
+    }
+    .about-body p { margin-bottom: 1rem; color: var(--ink-soft); }
+    .about-body p:first-of-type {
+      font-size: 1.15rem; color: var(--ink); font-weight: 500;
+    }
+    .about-body p:first-of-type::first-line {
+      font-family: 'Exo 2', sans-serif; font-weight: 900;
+    }
+
+    .about-stats {
+      margin-top: 2rem; padding-top: 2rem;
+      border-top: 1px solid var(--steel);
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    }
+    .about-stats dt {
+      font-family: 'Exo 2', sans-serif; font-weight: 700;
+      font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--terracotta);
+    }
+    .about-stats dd {
+      margin: .3rem 0 0;
+      font-family: 'Exo 2', sans-serif; font-weight: 900;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--forest); line-height: 1;
+    }
+
+    /* === CONTACT === */
+    .contact { background: var(--bone); }
+    .contact-header {
+      display: grid; gap: 1rem; margin-bottom: 3rem;
+    }
+    @media (min-width: 768px) {
+      .contact-header { grid-template-columns: 1.3fr 1fr; align-items: end; }
+    }
+    .contact-grid {
+      display: grid; gap: 1rem;
+    }
+    @media (min-width: 768px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+
+    .contact-card {
+      padding: 2rem;
+      background: var(--paper);
+      border-radius: var(--radius);
+    }
+    .contact-card h3 {
+      font-family: 'Exo 2', sans-serif; font-weight: 700;
+      font-size: .75rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--terracotta); margin-bottom: 1.5rem;
+    }
+    .contact-item {
+      display: block; padding: 1rem 0;
+      border-top: 1px solid rgba(28,30,31,0.08);
+      text-decoration: none;
+    }
+    .contact-item:first-of-type { border-top: 0; padding-top: 0; }
+    .contact-item-label {
+      display: block;
+      font-family: 'Exo 2', sans-serif; font-weight: 700;
+      font-size: .65rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--ink-mute); margin-bottom: .3rem;
+    }
+    .contact-item-value {
+      font-weight: 500; color: var(--ink);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+    }
+    .contact-address { font-style: normal; line-height: 1.7; }
+
+    /* === FOOTER === */
+    .site-footer {
+      background: var(--ink); color: var(--bone);
+      padding: var(--fluid-4) 0 2rem;
+    }
+    .site-footer a { color: var(--bone); }
+    .site-footer a:hover { color: var(--terracotta); }
+
+    .footer-top {
+      display: grid; gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(244,241,234,0.15);
+    }
+    @media (min-width: 768px) {
+      .footer-top {
+        grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+      }
+    }
+    .footer-brand .brand-mark { color: var(--bone); }
+    .footer-brand .brand-name { color: var(--bone); }
+    .footer-brand p { font-size: .9rem; opacity: .7; max-width: 36ch; margin-top: 1.25rem; }
+    .footer-col h4 {
+      font-family: 'Exo 2', sans-serif; font-weight: 700;
+      font-size: .7rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--terracotta); margin: 0 0 1rem;
+    }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .65rem; }
+    .footer-col a { font-size: .95rem; opacity: .85; }
+    .footer-col a:hover { opacity: 1; }
+    .footer-bottom {
+      padding-top: 2rem;
+      display: grid; gap: .5rem; font-size: .82rem; opacity: .55;
+    }
+    @media (min-width: 768px) {
+      .footer-bottom { grid-template-columns: 1fr auto; gap: 1rem; }
+    }
+
+    /* === UTILITIES === */
+    .skip {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--forest); color: var(--bone);
+      padding: .75rem 1rem; font-weight: 600; z-index: 100;
+    }
+    .skip:focus { left: 1rem; top: 1rem; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+      white-space: nowrap; border: 0;
+    }
+
+    /* Lock scroll when drawer open */
+    body.drawer-open { overflow: hidden; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important; transition: none !important;
+        scroll-behavior: auto !important;
+      }
+      .band { background-attachment: scroll !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">{% include logo.svg %}</span>
+        <span class="brand-words">
+          <span class="sr-only">AC</span>
+          <span class="brand-name">Service &amp; Parts</span>
+          <span class="brand-tag">Est. 2004 · Colac, VIC</span>
+        </span>
+      </a>
+
+      <div class="nav-menu" aria-hidden="true">
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#suppliers">Suppliers</a></li>
+          <li><a href="#catalogue">Catalogue</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+        <a class="nav-cta" href="#contact">Contact</a>
       </div>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-drawer" aria-label="Menu">
+        <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+      </button>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
+  <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#suppliers">Suppliers</a></li>
+      <li><a href="#catalogue">Catalogue</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Contact us</a>
+  </div>
+
+  <main id="main">
+
+    <!-- ========= HERO ========= -->
     <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="container hero-content">
-        <div class="row align-items-center">
-          <div class="col-lg-5">
-            <div class="hero-logo-wrapper">
-              <img src="/images/logo.gif" alt="{{ site.title }}" class="hero-logo">
-            </div>
+      <div class="container hero-stack">
+        <div class="hero-copy">
+          <p class="eyebrow">Farm machinery · parts · service</p>
+          <h1>Quality parts.<br>Straight from <strong>the&nbsp;paddock.</strong></h1>
+          <p class="lede">Specialist supply, fitment and support for agricultural machinery — from slurry tanks and Pearson loaders to hydraulics, vacuum pumps and everything between.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Enquire about a part</a>
+            <a class="btn btn-secondary" href="#catalogue">Browse catalogue</a>
           </div>
-          <div class="col-lg-7">
-            <div class="hero-text">
-              <h1 class="hero-title">Quality Agricultural Machinery & Parts</h1>
-              <p class="hero-subtitle">Providing specialized machinery parts and equipment for farming and agricultural needs throughout Australia since 2004.</p>
-              <a href="#contact" class="hero-cta">
-                <i class="fas fa-envelope me-2"></i>Contact Us
-              </a>
-              
-              <div class="hero-info">
-                <div class="hero-info-item">
-                  <div class="hero-info-icon">
-                    <i class="fas fa-phone-alt"></i>
-                  </div>
-                  <div>
-                    <p class="mb-0">Phone</p>
-                    <a href="tel:{{ site.phone }}" class="text-white">{{ site.phone }}</a>
-                  </div>
-                </div>
-                <div class="hero-info-item">
-                  <div class="hero-info-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                  </div>
-                  <div>
-                    <p class="mb-0">Mobile</p>
-                    <a href="tel:{{ site.mobile }}" class="text-white">{{ site.mobile }}</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <dl class="hero-meta">
+            <div><dt>Established</dt><dd>2004</dd></div>
+            <div><dt>Based in</dt><dd>Colac, VIC</dd></div>
+            <div><dt>Servicing</dt><dd>Australia</dd></div>
+          </dl>
+        </div>
+        <div class="hero-photo" role="img" aria-label="John Deere combine harvesting wheat in South Australia">
+          <span class="hero-photo-caption">Harvest · Culburra, South Australia</span>
         </div>
       </div>
     </section>
 
-    <!-- Products Section -->
-    <section id="products" class="section section-light">
+    <!-- ========= SERVICES ========= -->
+    <section class="section services" id="services">
       <div class="container">
-        <div class="section-title">
-          <h2>Our Products & Parts</h2>
-          <p>Quality parts and products for your agricultural machinery needs</p>
+        <div class="services-header">
+          <p class="eyebrow">01 — What we do</p>
+          <h2>Four ways we help&nbsp;keep you running.</h2>
+          <p class="lede">Twenty years of parts knowledge across the major suppliers — put to work for dealers, contractors and owner-operators.</p>
         </div>
-        
-        {% for category in site.data.contentful.spaces.acparts.category %}
-          <div class="mb-5">
-            <h3 class="category-title">{{ category.title }}</h3>
-            <div class="row">
-              {% for product in site.data.contentful.spaces.acparts.product %}
-                {% if category.sys.id == product.category.sys.id %}
-                {% assign anchor = product.title | replace: " ", "_" | remove: "/" | downcase %}
-                {% assign preview = product.description | xml_escape | truncate: 150 %}
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="product-card">
-                    <div class="product-img-wrapper">
-                      <img class="product-img" src="{{ product.image.url }}" alt="{{ product.image.title }}">
-                    </div>
-                    <div class="product-body">
-                      <h4 class="product-title">{{ product.title }}</h4>
-                      <p class="product-text">
-                        {{ preview }} 
-                        {% if preview contains "..." %}
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#{{ anchor }}">read more »</a>
-                        {% endif %}
-                      </p>
-                    </div>
-                    <div class="product-footer">
-                      <span class="product-category-badge">{{ category.title }}</span>
-                      <a href="mailto:{{ site.email }}?subject={{ product.title }}&body=Hi, I would like to enquire about your {{ product.title }}" class="btn btn-primary">
-                        <i class="fas fa-envelope me-2"></i>Enquire
-                      </a>
-                    </div>
-                  </div>
-                </div>
 
-                <!-- Product Modal -->
-                <div class="modal fade" id="{{ anchor }}" tabindex="-1" role="dialog" aria-labelledby="#{{ product.sys.id }}" aria-hidden="true">
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">{{ product.title }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-4 mb-4 text-center">
-                            <img class="product-modal-img" src="{{ product.image.url }}" alt="{{ product.title }}">
-                            <div class="mt-3">
-                              <span class="product-category-badge">{{ category.title }}</span>
-                            </div>
-                          </div>
-                          <div class="col-md-8">
-                            {{ product.description | xml_escape | markdownify }}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="mailto:{{ site.email }}?subject={{ product.title }}&body=Hi, I would like to enquire about your {{ product.title }}" class="btn btn-primary">
-                          <i class="fas fa-envelope me-2"></i>Enquire
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-        {% endfor %}
+        <ul class="services-list">
+          <li class="service">
+            <span class="service-num">01</span>
+            <h3>Parts &amp; Components</h3>
+            <p>Genuine and aftermarket parts for tractors, loaders, slurry tanks, hydraulics and irrigation — stocked or sourced fast.</p>
+          </li>
+          <li class="service">
+            <span class="service-num">02</span>
+            <h3>Machinery Supply</h3>
+            <p>New and used agricultural machinery from our supplier network, delivered and commissioned on-site where needed.</p>
+          </li>
+          <li class="service">
+            <span class="service-num">03</span>
+            <h3>Advice &amp; Fitment</h3>
+            <p>Diagnostics, compatibility checks and fitment guidance — the quick answer that saves a return trip to the dealer.</p>
+          </li>
+          <li class="service">
+            <span class="service-num">04</span>
+            <h3>Warranty &amp; Support</h3>
+            <p>Ongoing warranty work and service support across the Pearson, Jurop, Walvoil, Stucchi and Parker ranges.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <!-- Suppliers Section -->
-    <section id="suppliers" class="section section-sm" style="background-color: #f8f9fa;">
+    <!-- ========= CINEMATIC BAND ========= -->
+    <section class="band" aria-label="Rural landscape">
+      <div class="container band-inner">
+        <p class="eyebrow">Made for the land</p>
+        <h2>The machines don't wait.<br>Neither do we.</h2>
+        <p>When a tank's down, a season's at stake. We know the gear inside-out, we know the farmers who run it, and we know where to find the part that puts everything back in motion.</p>
+      </div>
+    </section>
+
+    <!-- ========= SUPPLIERS ========= -->
+    <section class="section suppliers" id="suppliers">
       <div class="container">
-        <div class="section-title">
-          <h2>Our Suppliers</h2>
-          <p>We partner with the best in the industry to provide quality parts</p>
+        <div class="suppliers-header">
+          <div>
+            <p class="eyebrow">02 — Supplier network</p>
+            <h2>Brands we stock and service.</h2>
+            <p class="lede">We work directly with the manufacturers behind the machines — no middlemen, no mystery replacements.</p>
+          </div>
+          <a class="btn btn-secondary" href="#catalogue">Browse catalogue →</a>
         </div>
 
-        <div class="row justify-content-center">
-          {% for supplier in site.data.contentful.spaces.acparts.supplier %}
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-              <div class="supplier-wrapper">
-                <img class="supplier-logo" title="{{ supplier.title }}" src="{{ supplier.image.url }}" alt="{{ supplier.title }}">
-              </div>
+        <div class="supplier-grid">
+          {% for s in suppliers %}
+            <div class="supplier" title="{{ s.title }}">
+              <img src="{{ s.image.url }}" alt="{{ s.title }} logo" loading="lazy" decoding="async">
             </div>
           {% endfor %}
         </div>
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section section-light">
+    <!-- ========= CATALOGUE ========= -->
+    <section class="section catalogue" id="catalogue">
       <div class="container">
-        {% assign about = site.data.contentful.spaces.acparts.page | where:"sys.id","1ZEyZby0kc6Yww0iU0EUuq" | first %}
-
-        <div class="section-title">
-          <h2>{{ about.title }}</h2>
+        <div class="catalogue-header">
+          <div>
+            <p class="eyebrow">03 — Catalogue</p>
+            <h2>Parts we stock.</h2>
+            <p class="lede">A working sample of what we supply. Can't see what you're after? Call or email — most lines are sourced on request.</p>
+          </div>
+          <a class="btn btn-accent" href="mailto:{{ site.email }}?subject=Parts enquiry">Email an enquiry →</a>
         </div>
-        
-        <div class="row align-items-center">
-          <div class="col-lg-7">
-            <div class="about-content">
+
+        {% if categories and categories.size > 0 %}
+          {% for category in categories %}
+            {% assign cat_products = products | where_exp: "p", "p.category.sys.id == category.sys.id" %}
+            {% if cat_products.size > 0 %}
+              <div class="category-block">
+                <h3 class="category-title" data-num="{{ forloop.index | prepend: '0' | slice: -2, 2 }}">{{ category.title }}</h3>
+                <ul class="product-list">
+                  {% for product in cat_products %}
+                    {% assign modal_id = 'p-' | append: product.sys.id %}
+                    <li itemscope itemtype="https://schema.org/Product">
+                      <button class="product" type="button" data-modal="{{ modal_id }}" aria-haspopup="dialog">
+                        {% if product.image.url %}
+                          <img src="{{ product.image.url }}?w=140&h=140&fit=fill" alt="" loading="lazy" decoding="async" itemprop="image">
+                        {% endif %}
+                        <span class="product-meta">
+                          <span class="product-title" itemprop="name">{{ product.title }}</span>
+                          <span class="product-hint">View details →</span>
+                        </span>
+                      </button>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <p style="color: var(--ink-mute); font-style: italic;">Catalogue populates from Contentful at build time.</p>
+        {% endif %}
+      </div>
+    </section>
+
+    <!-- ========= ABOUT ========= -->
+    <section class="section about" id="about">
+      <div class="container">
+        <p class="eyebrow">04 — The story</p>
+        <h2>Anthony Campbell.</h2>
+
+        <div class="about-inner">
+          {% if about.image.url %}
+            <img class="about-photo" src="{{ about.image.url }}" alt="Anthony Campbell, AC Service &amp; Parts" loading="lazy" decoding="async">
+          {% endif %}
+          <div class="about-body">
+            {% if about.content %}
               {{ about.content | markdownify }}
-            </div>
-          </div>
-          <div class="col-lg-5">
-            <img class="about-img img-fluid" src="{{ about.image.url }}" alt="{{ about.title }}">
+            {% else %}
+              <p>After school I left Victoria with my P plates and beloved 1975 HJ Monaro for the Northern Territory — mining industry, hydraulic machinery, and a lot learned fast.</p>
+              <p>Home again, I worked for J&amp;S Ladhams Contracting operating tractors, loaders, slurry tanks and silage gear, before landing at Pearson Ag in Colac. Six years as workshop and parts manager, fitting Pearson loaders and assembling Buckton wagons, Sam spreaders, Jaylor mixers, Quinn forklifts.</p>
+              <p>In 2004 Pearson closed the Australian workshop. I saw an opportunity to keep the parts and warranty service going independently, and AC Service and Parts has been supplying machinery dealers and customers across Australia ever since.</p>
+              <p>I pride myself on quality customer service, product knowledge and practical problem solving.</p>
+            {% endif %}
+
+            <dl class="about-stats">
+              <div><dt>Since</dt><dd>2004</dd></div>
+              <div><dt>Suppliers</dt><dd>{{ suppliers.size | default: '15+' }}</dd></div>
+              <div><dt>Region</dt><dd>AU-wide</dd></div>
+            </dl>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section" style="background-color: #f8f9fa;">
+    <!-- ========= CONTACT ========= -->
+    <section class="section contact" id="contact">
       <div class="container">
-        <div class="section-title">
-          <h2>Contact Us</h2>
-          <p>Get in touch with our team for inquiries and support</p>
+        <div class="contact-header">
+          <div>
+            <p class="eyebrow">05 — Contact</p>
+            <h2>Got a part in mind?<br>Let's talk.</h2>
+          </div>
+          <p class="lede">Call, text or email. Most enquiries get a same-day answer — even if the part takes a few days to source.</p>
         </div>
-        
-        <div class="row">
-          <div class="col-md-6 mb-4 mb-md-0">
-            {% assign contact = site.data.contentful.spaces.acparts.page | where:"sys.id","3t043SYibe2UIYKooq4Kii" | first %}
-            <div class="contact-info">
-              <h4 class="mb-4">Get In Touch</h4>
-              
-              <div class="contact-item">
-                <div class="contact-icon">
-                  <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="contact-text">
-                  <h5>Mobile</h5>
-                  <p><a href="tel:{{ site.mobile }}">{{ site.mobile }}</a></p>
-                </div>
-              </div>
 
-              <div class="contact-item">
-                <div class="contact-icon">
-                  <i class="fas fa-phone-alt"></i>
-                </div>
-                <div class="contact-text">
-                  <h5>Phone</h5>
-                  <p><a href="tel:{{ site.phone }}">{{ site.phone }}</a></p>
-                </div>
-              </div>
-              
-              <div class="contact-item">
-                <div class="contact-icon">
-                  <i class="fas fa-envelope"></i>
-                </div>
-                <div class="contact-text">
-                  <h5>Email</h5>
-                  <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-                </div>
-              </div>
-              
-              
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Direct lines</h3>
+            <a class="contact-item" href="tel:{{ site.mobile | remove: ' ' }}">
+              <span class="contact-item-label">Mobile</span>
+              <span class="contact-item-value">{{ site.mobile }}</span>
+            </a>
+            <a class="contact-item" href="tel:{{ site.phone | remove: ' ' }}">
+              <span class="contact-item-label">Workshop</span>
+              <span class="contact-item-value">{{ site.phone }}</span>
+            </a>
+            <a class="contact-item" href="mailto:{{ site.email }}">
+              <span class="contact-item-label">Email</span>
+              <span class="contact-item-value">{{ site.email }}</span>
+            </a>
+            <div class="contact-item">
+              <span class="contact-item-label">Fax</span>
+              <span class="contact-item-value">{{ site.fax }}</span>
             </div>
           </div>
-          
-          <div class="col-md-6">
-            {% assign address = site.data.contentful.spaces.acparts.page | where:"sys.id","4nsY1USJ3iyUiIUAqUsW2" | first %}
-            <div class="address-info">
-              <h4 class="mb-4">Our Location</h4>
-              
-              <div class="contact-item">
-                <div class="contact-icon">
-                  <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <div class="contact-text">
-                  <h5>Address</h5>
-                  {{ address.content | newline_to_br }}
-                </div>
-              </div>
-              
-              
-            </div>
+
+          <div class="contact-card">
+            <h3>Workshop</h3>
+            <address class="contact-address contact-item-value">
+              AC Service &amp; Parts<br>
+              495 Larpent Road<br>
+              Colac, VIC 3249<br>
+              Australia
+            </address>
+            <p style="margin-top: 1.5rem">
+              <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&query=495+Larpent+Road+Colac+VIC+3249" target="_blank" rel="noopener">Open in Maps ↗</a>
+            </p>
           </div>
         </div>
       </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <h3>{{ site.title }}</h3>
-            <p>Quality agricultural parts and products for your needs</p>
-            
-            <ul class="list-inline mb-4">
-              <li class="list-inline-item">
-                <a href="#products">Products</a>
-              </li>
-              <li class="list-inline-item">•</li>
-              <li class="list-inline-item">
-                <a href="#suppliers">Suppliers</a>
-              </li>
-              <li class="list-inline-item">•</li>
-              <li class="list-inline-item">
-                <a href="#about">About</a>
-              </li>
-              <li class="list-inline-item">•</li>
-              <li class="list-inline-item">
-                <a href="#contact">Contact</a>
-              </li>
-            </ul>
-            
-            <div class="footer-bottom">
-              <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
-              <p><a href="https://zackdesign.biz">Website by Zack Design</a></p>
+  <!-- Product modals -->
+  {% if categories and categories.size > 0 %}
+    {% for category in categories %}
+      {% assign cat_products = products | where_exp: "p", "p.category.sys.id == category.sys.id" %}
+      {% for product in cat_products %}
+        {% assign modal_id = 'p-' | append: product.sys.id %}
+        <dialog class="product-modal" id="{{ modal_id }}" aria-labelledby="{{ modal_id }}-title">
+          <header class="product-modal-head">
+            <span class="product-modal-category">{{ category.title }}</span>
+            <button class="product-modal-close" type="button" aria-label="Close" data-close>×</button>
+          </header>
+          <div class="product-modal-body">
+            {% if product.image.url %}
+              <img class="product-modal-img" src="{{ product.image.url }}?w=480&h=480&fit=fill" alt="{{ product.title }}">
+            {% endif %}
+            <div>
+              <h3 class="product-modal-title" id="{{ modal_id }}-title">{{ product.title }}</h3>
+              <div class="product-modal-desc">
+                {% if product.description and product.description != '' %}
+                  {{ product.description | xml_escape | markdownify }}
+                {% else %}
+                  <p>Enquire for availability, specifications and pricing.</p>
+                {% endif %}
+              </div>
             </div>
           </div>
+          <footer class="product-modal-foot">
+            <button class="btn btn-secondary" type="button" data-close>Close</button>
+            <a class="btn btn-accent" href="mailto:{{ site.email }}?subject=Enquiry%3A%20{{ product.title | url_encode }}">Enquire about this →</a>
+          </footer>
+        </dialog>
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <span class="brand-mark" aria-hidden="true">{% include logo.svg %}</span>
+            <span class="brand-words">
+              <span class="brand-name">AC Service &amp; Parts</span>
+              <span class="brand-tag">Est. 2004 · Colac, VIC</span>
+            </span>
+          </a>
+          <p>Specialist agricultural machinery, parts and service — supplying dealers and farmers across Australia since 2004.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#suppliers">Suppliers</a></li>
+            <li><a href="#catalogue">Catalogue</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:{{ site.mobile | remove: ' ' }}">{{ site.mobile }}</a></li>
+            <li><a href="tel:{{ site.phone | remove: ' ' }}">{{ site.phone }}</a></li>
+            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            <li>495 Larpent Road<br>Colac, VIC 3249</li>
+          </ul>
         </div>
       </div>
-    </footer>
+      <div class="footer-bottom">
+        <div>© {{ 'now' | date: '%Y' }} AC Service &amp; Parts Pty Ltd. All rights reserved.</div>
+        <div>Photography: <a href="https://unsplash.com/@jocky_hpr" rel="noopener">Jock Spillane</a> &middot; <a href="https://unsplash.com/@davidmaunsell" rel="noopener">David Maunsell</a> on Unsplash</div>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NMW4QD2DNM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-NMW4QD2DNM');
-    </script>
-    
-    <!-- Smooth Scrolling -->
-    <script>
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+  <script>
+    (function () {
+      const nav = document.querySelector('.nav');
+      const toggle = nav.querySelector('.nav-toggle');
+      const drawer = document.getElementById('nav-drawer');
+      const links = drawer.querySelectorAll('a');
+
+      function setOpen(open) {
+        nav.dataset.open = open ? 'true' : 'false';
+        toggle.setAttribute('aria-expanded', String(open));
+        drawer.setAttribute('aria-hidden', String(!open));
+        document.body.classList.toggle('drawer-open', open);
+      }
+
+      toggle.addEventListener('click', () => {
+        setOpen(nav.dataset.open !== 'true');
+      });
+      links.forEach(a => a.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+
+      // Smooth-scroll with fixed-header offset
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const id = a.getAttribute('href');
+          if (id.length <= 1) return;
+          const target = document.querySelector(id);
+          if (!target) return;
           e.preventDefault();
-          
-          const targetId = this.getAttribute('href');
-          const targetElement = document.querySelector(targetId);
-          
-          if (targetElement) {
-            const navHeight = document.querySelector('.navbar').offsetHeight;
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = targetPosition - navHeight;
-            
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
+          const h = document.querySelector('.site-header').offsetHeight;
+          const y = target.getBoundingClientRect().top + window.pageYOffset - h;
+          window.scrollTo({ top: y, behavior: 'smooth' });
         });
       });
-      
-      // Add active class to nav items based on scroll position
-      window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        let current = '';
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          const navHeight = document.querySelector('.navbar').offsetHeight;
-          
-          if(pageYOffset >= (sectionTop - navHeight - 100)) {
-            current = section.getAttribute('id');
-          }
-        });
-        
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          const href = link.getAttribute('href');
-          if(href === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
-      });
-    </script>
 
-    <!-- Script to hide title when menu is open -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var navbarCollapse = document.getElementById('navbarSupportedContent');
-        var navbarBrand = document.querySelector('.navbar-brand');
-        
-        navbarCollapse.addEventListener('show.bs.collapse', function () {
-          navbarBrand.style.display = 'none';
-        });
-        
-        navbarCollapse.addEventListener('hidden.bs.collapse', function () {
-          navbarBrand.style.display = 'flex';
+      // Product modals
+      document.querySelectorAll('[data-modal]').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const modal = document.getElementById(trigger.dataset.modal);
+          if (modal && typeof modal.showModal === 'function') {
+            modal.showModal();
+          }
         });
       });
-    </script>
-  </body>
+      document.querySelectorAll('.product-modal').forEach(modal => {
+        // Close buttons
+        modal.querySelectorAll('[data-close]').forEach(btn => {
+          btn.addEventListener('click', () => modal.close());
+        });
+        // Backdrop click
+        modal.addEventListener('click', e => {
+          if (e.target === modal) modal.close();
+        });
+      });
+    })();
+  </script>
+
+  {% if site.google_analytics %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.google_analytics }}');
+  </script>
+  {% endif %}
+</body>
 </html>
-
