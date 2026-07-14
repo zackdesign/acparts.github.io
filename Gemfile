@@ -15,6 +15,12 @@ gem "bigdecimal"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-  gem "jekyll-contentful-data-import"
   gem 'jekyll-seo-tag'
 end
+
+# Contentful import — used only by `bundle exec rake contentful:import` to
+# refresh _data/contentful/spaces/acparts.yaml. Not needed to build the site
+# (the generated data is committed). Replaces the archived
+# jekyll-contentful-data-import gem with the maintained official SDK.
+gem "contentful", "~> 2.20"
+gem "rake"

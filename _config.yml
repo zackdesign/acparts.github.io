@@ -18,12 +18,9 @@ locale: en_AU
 seo:
   keywords: "farm machinery, tractor parts, irrigation equipment, agricultural supplies, vacuum pumps, hydraulic parts, Pearson loader parts, slurry tanks, farm equipment Victoria"
 
-# Contentful
-contentful:
-  spaces:
-    - acparts:
-        space: ENV_CONTENTFUL_SPACE_ID
-        access_token: ENV_CONTENTFUL_ACCESS_TOKEN
+# Contentful data lives in _data/contentful/spaces/acparts.yaml (committed).
+# Refresh it manually with:
+#   CONTENTFUL_SPACE_ID=xxx CONTENTFUL_ACCESS_TOKEN=yyy bundle exec rake contentful:import
 
 # Build settings
 markdown: kramdown
