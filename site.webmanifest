@@ -1,0 +1,17 @@
+---
+layout: null
+---
+{
+  "name": "AC Service & Parts",
+  "short_name": "AC Parts",
+  "description": "Farm machinery parts, supply and service — Colac, Victoria.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#F4F1EA",
+  "theme_color": "#2C4A3E",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
