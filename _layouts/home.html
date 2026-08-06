@@ -7,6 +7,16 @@
 
   {% seo %}
 
+  {%- if jekyll.environment == "production" and site.google_analytics %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.google_analytics }}');
+  </script>
+  {%- endif %}
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -38,7 +48,25 @@
     },
     "founder": "Anthony Campbell",
     "foundingDate": "2004",
-    "description": {{ site.description | strip_newlines | jsonify }}
+    "description": {{ site.description | strip_newlines | jsonify }},
+    {%- comment -%}
+      The catalogue is a nested OfferCatalog, NOT Product entities. Google's
+      Product snippet validator requires offers/review/aggregateRating on
+      anything typed Product, and these items have no price in Contentful —
+      marking them up as Products caused 30 critical Search Console errors.
+    {%- endcomment -%}
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Parts and attachments",
+      "itemListElement": [
+        {%- for category in categories %}
+        {
+          "@type": "OfferCatalog",
+          "name": {{ category.title | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ]
+    }
   }
   </script>
 
@@ -879,13 +907,13 @@
                 <ul class="product-list">
                   {% for product in cat_products %}
                     {% assign modal_id = 'p-' | append: product.sys.id %}
-                    <li itemscope itemtype="https://schema.org/Product">
+                    <li>
                       <button class="product" type="button" data-modal="{{ modal_id }}" aria-haspopup="dialog">
                         {% if product.image.url %}
-                          <img src="{{ product.image.url }}?w=140&h=140&fit=fill" alt="" loading="lazy" decoding="async" itemprop="image">
+                          <img src="{{ product.image.url }}?w=140&h=140&fit=fill" alt="" loading="lazy" decoding="async">
                         {% endif %}
                         <span class="product-meta">
-                          <span class="product-title" itemprop="name">{{ product.title }}</span>
+                          <span class="product-title">{{ product.title }}</span>
                           <span class="product-hint">View details →</span>
                         </span>
                       </button>
@@ -1111,14 +1139,5 @@
     })();
   </script>
 
-  {% if site.google_analytics %}
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '{{ site.google_analytics }}');
-  </script>
-  {% endif %}
 </body>
 </html>

@@ -35,3 +35,6 @@ exclude:
   - README.md
   - node_modules
   - .sass-cache
+
+# Analytics (GA4) — emitted only on production builds
+google_analytics: "G-NMW4QD2DNM"
