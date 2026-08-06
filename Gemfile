@@ -16,6 +16,7 @@ gem "bigdecimal"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem 'jekyll-seo-tag'
+gem 'jekyll-sitemap'
 end
 
 # Contentful import — used only by `bundle exec rake contentful:import` to
