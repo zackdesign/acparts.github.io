@@ -1,4 +1,7 @@
-title: "AC Service & Parts | Farm Machinery & Parts Supplier"
+# title + tagline render as "title | tagline" via jekyll-seo-tag; without a
+# tagline the plugin appended the whole 200-char description to the <title>
+title: "AC Service & Parts"
+tagline: "Farm Machinery & Parts Supplier"
 email: ant@acparts.com.au
 phone: "03 5233 1085"
 mobile: "0417 319 276"

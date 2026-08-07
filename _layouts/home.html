@@ -89,7 +89,9 @@
       --forest: #2C4A3E;
       --forest-dark: #1F3A2E;
       --terracotta: #C76A3E;
-      --terracotta-dark: #A8562F;
+      /* AA (4.5:1+) for small text on every ground it sits on, including
+         --paper #E6E1D4 and --bone-dim #ECE7DC — #A8562F only passed on bone */
+      --terracotta-dark: #9A4E2A;
       --steel: #C9C4BA;
       --steel-soft: #DFDACF;
       --teal: #3D8681; /* logo only */
@@ -222,6 +224,7 @@
     }
     .nav-cta:hover { background: var(--forest-dark); color: var(--bone); }
 
+    .nav-toggle[hidden] { display: none; } /* author display below would defeat [hidden] */
     .nav-toggle {
       background: none; border: 0; padding: 0; margin: 0;
       width: 44px; height: 44px; flex-shrink: 0;
@@ -343,7 +346,7 @@
     .btn-secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
     .btn-secondary:hover { background: var(--ink); color: var(--bone); }
     .btn-accent { background: var(--terracotta-dark); color: var(--bone); }
-    .btn-accent:hover { background: #8F4826; color: var(--bone); }
+    .btn-accent:hover { background: #7E3E1F; color: var(--bone); }
     .btn-ghost { background: transparent; color: var(--bone); border-color: rgba(244,241,234,0.6); }
     .btn-ghost:hover { background: var(--bone); color: var(--ink); border-color: var(--bone); }
 
@@ -798,7 +801,8 @@
         <a class="nav-cta" href="#contact">Contact</a>
       </div>
 
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-drawer" aria-label="Menu">
+      <!-- hidden until JS arms it — a toggle that can't toggle shouldn't be in the tab order -->
+      <button class="nav-toggle" hidden aria-expanded="false" aria-controls="nav-drawer" aria-label="Menu">
         <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
       </button>
     </nav>
@@ -927,7 +931,7 @@
                   {% for product in cat_products %}
                     {% assign modal_id = 'p-' | append: product.sys.id %}
                     <li>
-                      <button class="product" type="button" data-modal="{{ modal_id }}" aria-haspopup="dialog">
+                      <button class="product" type="button" data-modal="{{ modal_id }}" aria-haspopup="dialog" disabled>
                         {% if product.image.url %}
                           <img src="{{ product.image.url }}?w=140&h=140&fit=fill" alt="" loading="lazy" decoding="async">
                         {% endif %}
@@ -1108,6 +1112,11 @@
       const toggle = nav.querySelector('.nav-toggle');
       const drawer = document.getElementById('nav-drawer');
       const links = drawer.querySelectorAll('a');
+
+      // Arm the JS-only controls: they ship hidden/disabled so that without
+      // JS nothing focusable announces an action it can't perform.
+      toggle.hidden = false;
+      document.querySelectorAll('.product[disabled]').forEach(b => b.disabled = false);
 
       function setOpen(open) {
         nav.dataset.open = open ? 'true' : 'false';
