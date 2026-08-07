@@ -19,7 +19,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -37,9 +38,10 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "AC Service & Parts",
-    "image": "https://acparts.com.au/images/logo.gif",
+    "image": "https://acparts.com.au/images/og.jpg",
+    "logo": "https://acparts.com.au/icon-512.png",
     "url": "https://acparts.com.au",
-    "telephone": "{{ site.phone }}",
+    "telephone": "+61 3 5233 1085",
     "email": "{{ site.email }}",
     "address": {
       "@type": "PostalAddress",
@@ -49,6 +51,8 @@
       "postalCode": "3249",
       "addressCountry": "AU"
     },
+    "geo": { "@type": "GeoCoordinates", "latitude": -38.356, "longitude": 143.500 },
+    "areaServed": { "@type": "Country", "name": "Australia" },
     "founder": "Anthony Campbell",
     "foundingDate": "2004",
     "description": {{ site.description | strip_newlines | jsonify }},
@@ -132,11 +136,11 @@
       display: inline-flex; align-items: center; gap: .6rem;
       font-family: 'Exo 2', sans-serif; font-weight: 700;
       font-size: .7rem; letter-spacing: .28em; text-transform: uppercase;
-      color: var(--terracotta);
+      color: var(--terracotta-dark); /* AA on bone; raw terracotta is 3.1:1 */
       margin: 0 0 1.25rem;
     }
     .eyebrow::before {
-      content: ''; width: 1.5rem; height: 1px; background: var(--terracotta);
+      content: ''; width: 1.5rem; height: 1px; background: var(--terracotta-dark);
     }
     .lede {
       font-size: clamp(1.05rem, 2.2vw, 1.3rem);
@@ -188,7 +192,7 @@
     .brand-tag {
       font-family: 'Inter', sans-serif; font-weight: 500;
       font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
-      color: var(--terracotta);
+      color: var(--terracotta-dark);
     }
     @media (min-width: 768px) {
       .brand-mark { width: 112px; height: 80px; }
@@ -197,7 +201,6 @@
     }
     /* keep the header comfortable when the mark is bigger */
     .nav { min-height: 92px; }
-    .site-header { /* taller now */ }
 
     .nav-menu { display: none; align-items: center; gap: 2rem; }
     .nav-links { display: flex; gap: 2rem; list-style: none; padding: 0; margin: 0; }
@@ -207,7 +210,7 @@
     }
     .nav-links a::after {
       content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
-      background: var(--terracotta); transform: scaleX(0); transform-origin: left;
+      background: var(--teal); transform: scaleX(0); transform-origin: left;
       transition: transform .2s ease;
     }
     .nav-links a:hover::after, .nav-links a:focus-visible::after { transform: scaleX(1); }
@@ -267,7 +270,7 @@
 
     /* === HERO === */
     .hero {
-      padding-top: calc(72px + 3rem);
+      padding-top: calc(92px + 3rem);
       padding-bottom: var(--fluid-4);
       position: relative; overflow: hidden;
     }
@@ -277,7 +280,7 @@
     .hero-copy { order: 2; }
     .hero-photo { order: 1; }
     @media (min-width: 900px) {
-      .hero { padding-top: calc(72px + 5rem); padding-bottom: var(--fluid-5); }
+      .hero { padding-top: calc(92px + 5rem); padding-bottom: var(--fluid-5); }
       .hero-stack { grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center; }
       .hero-copy { order: 1; }
       .hero-photo { order: 2; }
@@ -304,7 +307,7 @@
     .hero-meta dt {
       font-family: 'Exo 2', sans-serif; font-weight: 700;
       font-size: .65rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--terracotta); margin: 0 0 .3rem;
+      color: var(--terracotta-dark); margin: 0 0 .3rem;
     }
     .hero-meta dd { margin: 0; font-weight: 500; font-size: .95rem; }
 
@@ -312,7 +315,7 @@
       aspect-ratio: 4 / 5;
       background:
         linear-gradient(180deg, rgba(44,74,62,0) 50%, rgba(28,30,31,0.45) 100%),
-        url('https://images.unsplash.com/photo-1562672852-e392aaad0c17?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1400')
+        url('/images/site/hero.jpg')
         center/cover;
       border-radius: var(--radius);
       position: relative;
@@ -339,8 +342,8 @@
     .btn-primary:hover { background: var(--forest-dark); color: var(--bone); }
     .btn-secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
     .btn-secondary:hover { background: var(--ink); color: var(--bone); }
-    .btn-accent { background: var(--terracotta); color: var(--bone); }
-    .btn-accent:hover { background: var(--terracotta-dark); color: var(--bone); }
+    .btn-accent { background: var(--terracotta-dark); color: var(--bone); }
+    .btn-accent:hover { background: #8F4826; color: var(--bone); }
     .btn-ghost { background: transparent; color: var(--bone); border-color: rgba(244,241,234,0.6); }
     .btn-ghost:hover { background: var(--bone); color: var(--ink); border-color: var(--bone); }
 
@@ -397,7 +400,7 @@
       padding-block: var(--fluid-5);
       background:
         linear-gradient(180deg, rgba(28,30,31,0.35) 0%, rgba(28,30,31,0.7) 100%),
-        url('https://images.unsplash.com/photo-1600476434723-78d2cf0c63e0?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800')
+        url('/images/site/band.jpg')
         center/cover fixed;
       color: var(--bone);
       display: flex; align-items: center;
@@ -490,7 +493,7 @@
     }
     .category-title::before {
       content: attr(data-num);
-      font-size: .7rem; color: var(--terracotta); letter-spacing: .15em;
+      font-size: .7rem; color: var(--terracotta-dark); letter-spacing: .15em;
     }
 
     .product-list {
@@ -531,7 +534,7 @@
       -webkit-line-clamp: 2; -webkit-box-orient: vertical;
     }
     .product-hint {
-      font-size: .7rem; color: var(--terracotta); font-weight: 700;
+      font-size: .7rem; color: var(--terracotta-dark); font-weight: 700;
       letter-spacing: .1em; text-transform: uppercase;
       display: inline-flex; align-items: center; gap: .3rem;
     }
@@ -561,7 +564,7 @@
     .product-modal-category {
       font-family: 'Exo 2', sans-serif; font-weight: 700;
       font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--terracotta);
+      color: var(--terracotta-dark);
     }
     .product-modal-close {
       background: none; border: 0; padding: .25rem; margin: -.25rem;
@@ -645,7 +648,7 @@
     .about-stats dt {
       font-family: 'Exo 2', sans-serif; font-weight: 700;
       font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--terracotta);
+      color: var(--terracotta-dark);
     }
     .about-stats dd {
       margin: .3rem 0 0;
@@ -675,7 +678,7 @@
     .contact-card h3 {
       font-family: 'Exo 2', sans-serif; font-weight: 700;
       font-size: .75rem; letter-spacing: .24em; text-transform: uppercase;
-      color: var(--terracotta); margin-bottom: 1.5rem;
+      color: var(--terracotta-dark); margin-bottom: 1.5rem;
     }
     .contact-item {
       display: block; padding: 1rem 0;
@@ -748,6 +751,18 @@
     /* Lock scroll when drawer open */
     body.drawer-open { overflow: hidden; }
 
+    /* Without JS the modals can't open — say so, and drop the affordance */
+    .catalogue-noscript {
+      margin-top: 1rem; padding: .9rem 1.1rem;
+      background: var(--paper); border-left: 3px solid var(--terracotta-dark);
+      font-size: .92rem; color: var(--ink-soft); max-width: 52ch;
+    }
+    @media (scripting: none) {
+      .product-hint { display: none; }
+      .product { cursor: default; }
+      .product:hover, .product:focus-visible { transform: none; border-color: var(--steel); background: var(--bone); }
+    }
+
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -773,7 +788,7 @@
         </span>
       </a>
 
-      <div class="nav-menu" aria-hidden="true">
+      <div class="nav-menu">
         <ul class="nav-links">
           <li><a href="#services">Services</a></li>
           <li><a href="#suppliers">Suppliers</a></li>
@@ -830,7 +845,7 @@
         <div class="services-header">
           <p class="eyebrow">01 — What we do</p>
           <h2>Four ways we help&nbsp;keep you running.</h2>
-          <p class="lede">Twenty years of parts knowledge across the major suppliers — put to work for dealers, contractors and owner-operators.</p>
+          <p class="lede">Parts knowledge built since 2004 across the major suppliers — put to work for dealers, contractors and owner-operators.</p>
         </div>
 
         <ul class="services-list">
@@ -874,7 +889,7 @@
           <div>
             <p class="eyebrow">02 — Supplier network</p>
             <h2>Brands we stock and service.</h2>
-            <p class="lede">We work directly with the manufacturers behind the machines — no middlemen, no mystery replacements.</p>
+            <p class="lede">We buy from the manufacturers and distributors behind the machines — known lines, never mystery replacements.</p>
           </div>
           <a class="btn btn-secondary" href="#catalogue">Browse catalogue →</a>
         </div>
@@ -897,6 +912,7 @@
             <p class="eyebrow">03 — Catalogue</p>
             <h2>Parts we stock.</h2>
             <p class="lede">A working sample of what we supply. Can't see what you're after? Call or email — most lines are sourced on request.</p>
+            <noscript><p class="catalogue-noscript">Item details on this page open with JavaScript, which is switched off in your browser — call or email with the part name instead and we'll take it from there.</p></noscript>
           </div>
           <a class="btn btn-accent" href="mailto:{{ site.email }}?subject=Parts enquiry">Email an enquiry →</a>
         </div>
@@ -970,7 +986,7 @@
             <p class="eyebrow">05 — Contact</p>
             <h2>Got a part in mind?<br>Let's talk.</h2>
           </div>
-          <p class="lede">Call, text or email. Most enquiries get a same-day answer — even if the part takes a few days to source.</p>
+          <p class="lede">Call, text or email. You'll get a straight answer fast — even if the part takes a few days to source.</p>
         </div>
 
         <div class="contact-grid">

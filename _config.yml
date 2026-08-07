@@ -5,12 +5,18 @@ mobile: "0417 319 276"
 fax: "03 5233 1196"
 address: "495 Larpent Road, Colac, VIC 3249"
 description: >
-  AC Service & Parts specializes in quality new and second-hand farm machinery, parts and equipment
+  AC Service & Parts specialises in quality new and second-hand farm machinery, parts and equipment
   for irrigation, tractors, slurry tanks, and other agricultural needs throughout Australia.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://acparts.com.au" # production site URL
 author: "Anthony Campbell"
-logo: "/assets/images/logo.png"
+logo: "/icon-512.png"
+
+# Default social share image (jekyll-seo-tag og:image)
+defaults:
+  - scope: { path: "" }
+    values:
+      image: /images/og.jpg
 
 # SEO settings
 lang: en-AU
